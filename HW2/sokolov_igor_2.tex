@@ -1,0 +1,473 @@
+% Этот шаблон документа разработан в 2014 году
+% Данилом Фёдоровых (danil@fedorovykh.ru) 
+% для использования в курсе 
+% <<Документы и презентации в \LaTeX>>, записанном НИУ ВШЭ
+% для Coursera.org: http://coursera.org/course/latex .
+% Исходная версия шаблона --- 
+% https://www.writelatex.com/coursera/latex/2
+
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{comment}
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Интерлиньяж
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soulutf8} % Модификаторы начертания
+
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+
+\pagestyle{fancy}
+\fancyhf{}
+\pagestyle{plain} % нумерация вкл.
+
+\rhead{\today}
+\lhead{Соколов Игорь, группа 573}
+
+%%% Заголовок
+\author{Соколов Игорь, группа 573}
+\title{ДЗ 2 по Методам Оптимизации}
+\date{\today}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+\section{}
+
+Покажите, что множество афинно тогда и только тогда, когда его пересечение с любой прямой афинно.
+
+$X - aff \Leftrightarrow \forall a \rightarrow a\cap X - aff$
+
+\begin{proof}
+	
+	\vspace{\baselineskip}
+	
+	$\Longrightarrow$
+	
+	Пусть $X - aff$.
+	
+	Любая прямая  - афинное множество по определению.
+	
+	Если $a\cap X = \varnothing$, тогда $a\cap X$ - $aff$ по опр.
+	
+	Если $a\cap X \neq \varnothing$, тогда возьмем $x_1, x_2 \in a\cap X $
+
+	$\Rightarrow $
+
+	$\begin{cases}
+	x_1, x_2 \in a\\
+	x_1, x_2 \in X\end{cases}
+	$
+	
+	Так как $a - aff, X - aff$, то $\forall \theta \in \mathbb{R} \rightarrow $
+	$\begin{cases} 
+	x_{\theta} = \theta x_1+(1-\theta)x_2 \in a\\
+	x_{\theta} = \theta x_1+(1-\theta)x_2 \in X
+	\end{cases}
+	$ 
+	
+	$\Rightarrow x_{\theta} \in a\cap X$
+	
+	$\Rightarrow a\cap X - aff$
+
+	\vspace{\baselineskip}
+	
+	$\Longleftarrow$
+		
+	Пусть теперь $\forall a \rightarrow a\cap X - aff$. 
+	
+	Для произвольных $x_1,x_2 \in X \rightarrow$ пересечение $X$ и прямой $a$, содержащей $x_1,x_2$ афинно, то есть содержит прямую, проходящую через $x_1$ и $x_2 \Rightarrow a \in a\cap X$, так как через две точки можно провести толлко \pagestyle{plain} % нумерация вкл.одну прямую.
+	
+	Так как $a \in a\cap X \Rightarrow a \in X$
+	
+	То есть $\forall x_1,x_2 \in X \theta \in \mathbb{R}  \rightarrow \theta x_1+(1-\theta)x_2 \in X$
+	
+	$\Rightarrow X - aff$
+\end{proof}
+
+\section{}
+
+Пусть $S_1, \ldots, S_k$ - произвольные непустые множества в $\mathbb{R}^n$. Докажите, что:
+
+1. $ \mathbf{cone} \left( \bigcup\limits_{i=1}^k S_i\right) = \sum\limits_{i=1}^k \mathbf{cone} \left( S_i\right) $
+
+2. $ \mathbf{conv} \left( \sum\limits_{i=1}^k S_i\right) = \sum\limits_{i=1}^k \mathbf{conv} \left( S_i\right) $
+
+%2
+Начнем с 2.
+
+\begin{proof}
+
+По индукции:
+
+База: $k = 1 \Rightarrow \mathbf{conv} \left( \sum\limits_{i=1}^1 S_i\right) = \sum\limits_{i=1}^1 \mathbf{conv}\left( S_i\right) = \mathbf{conv} \left( S_1\right)$- верно.
+
+Пусть верно для $k = n \Rightarrow \mathbf{conv} \left( \sum\limits_{i=1}^n S_i\right) = \sum\limits_{i=1}^n \mathbf{conv} \left( S_i\right) $ - верно.
+
+Докажем для $k = n+1$, то есть докажем равенство: 
+
+$$\mathbf{conv} \left( \sum\limits_{i=1}^{n+1} S_i\right) = \sum\limits_{i=1}^{n+1} \mathbf{conv} \left( S_i\right)$$
+
+$$\mathbf{conv} \left( \sum\limits_{i=1}^{n} S_i + S_{n+1}\right) = \mathbf{conv} \left(\sum\limits_{i=1}^{n} S_i\right) + \mathbf{conv}\left( S_{n+1}\right)$$
+
+Переобозначим:
+
+$A = \sum\limits_{i=1}^{n} S_i$
+
+$B = S_{n+1}$
+
+Тогда $$\mathbf{conv}\left( A +B\right) = \mathbf{conv}\left( A \right)+ \mathbf{conv}\left( B\right)$$
+
+$\Longrightarrow $
+
+$A \subset \mathbf{conv}\left( A \right)$
+
+$B \subset \mathbf{conv}\left( B \right)$
+
+$A + B \subset \mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right)$
+
+Так как $\mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right) - convex$ (так как сумма выпуклых множеств).
+
+То $\mathbf{conv}\left( A + B\right)\subset\mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right)$ ( так как $\mathbf{conv}\left( A + B\right)$ минимальное выпуклое множество, такое что $A+B \subseteq \mathbf{conv}\left( A + B\right)$)
+
+\vspace{\baselineskip}
+\textbf{Что значит "минимальное"?}
+
+Так как $\mathbf{conv}\left( A + B\right)$ есть пересечение всевозможных выпуклых множеств, содержащих $A+B$, то есть $\bigcap\limits_{i=0}^n S_i = \mathbf{conv}\left( A + B\right)$.
+
+Можно ввести порядок по вложению: $S_{i_1}\subseteq S_{i_2}\subseteq \dots\subseteq S_{i_n}\subseteq A+B, \text{где } i_j \in [1,n]$ 
+
+И под \textbf{"минимальным"} множеством подразумевалось как раз $S_{i_1}$
+
+
+~\
+
+$\Longleftarrow $
+
+Пусть $\quad z \in \mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right),\quad$ то есть $z = x +y,\quad$ где $x \in \mathbf{conv}\left(A\right), y \in \mathbf{conv}\left(B\right)$ 
+
+Тогда $x = \sum\limits_{i=1}^{l} \alpha_ix_i , y = \sum\limits_{j=1}^{p} \beta_jy_j,\quad \alpha_i \geq 0, \beta_j \geq 0,\quad \sum\limits_{i=1}^{l} \alpha_i = \sum\limits_{j=1}^{p} \beta_j = 1$
+
+$x + y \in \mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right) $
+
+Для начала, заметим, что $x + y_j \in \mathbf{conv}(A+B)$, так как  $x + y_j = \sum\limits_{i=1}^{l} \alpha_i(x_i+y_j)$
+
+Затем можно записать $x+y$ как выпуклую комбинацию точек $x+y_j$, а именно:
+
+$$z = x + y =\sum\limits_{j=1}^{p} \beta_j(x+y_j) = \sum\limits_{j=1}^{p}\sum\limits_{i=1}^{l} \alpha_i\beta_j(x_i+y_j)$$
+
+Где $x_i + y_i \in A+ B, \alpha_i\beta_j\geq 0,\sum\limits_{j=1}^{p}\sum\limits_{i=1}^{l} \alpha_i\beta_j =\sum\limits_{i=1}^{l}\alpha_i \sum\limits_{j=1}^{p}\beta_j =1$
+
+Таким образом $z$ является выпуклой комбинацией точек множества $A+B$
+
+$\Rightarrow z \in \mathbf{conv}\left( A + B\right)$
+
+Так как $z$ было выбрано произвольно, то верно $  \mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right) \subset \mathbf{conv}\left( A + B\right)$
+
+Из включения в обе стороны следует равенство:
+$$  \mathbf{conv}\left( A + B\right) = \mathbf{conv}\left( A\right) + \mathbf{conv}\left( B\right) $$
+
+\end{proof}
+Доказательство 1 идейно повторяет док-во 2, за исключением некоторых деталей.
+
+\begin{proof}
+По индукции:
+
+База: $k = 1 \Rightarrow \mathbf{cone} \left( \bigcup\limits_{i=1}^1 S_i\right) = \sum\limits_{i=1}^1 \mathbf{cone}\left( S_i\right) = \mathbf{cone} \left( S_1\right)$- верно.
+
+Пусть верно для $k = n \Rightarrow \mathbf{cone} \left( \bigcup\limits_{i=1}^n S_i\right) = \sum\limits_{i=1}^n \mathbf{cone} \left( S_i\right) $ - верно.
+
+Докажем для $k = n+1$, то есть докажем равенство: 
+
+$$\mathbf{cone} \left( \bigcup\limits_{i=1}^{n+1} S_i\right) = \sum\limits_{i=1}^{n+1} \mathbf{cone} \left( S_i\right)$$
+
+$$\mathbf{cone} \left( \bigcup\limits_{i=1}^{n} S_i \cup S_{n+1}\right) = \mathbf{cone} \left(\bigcup\limits_{i=1}^{n} S_i\right) + \mathbf{cone}\left( S_{n+1}\right)$$
+
+Переобозначим:
+
+$A = \bigcup\limits_{i=1}^{n} S_i$
+
+$B = S_{n+1}$
+
+Тогда $$\mathbf{cone}\left( A \cup B\right) = \mathbf{cone}\left( A \right)+ \mathbf{cone}\left( B\right)$$
+
+$\Longrightarrow $
+
+$A \subset \mathbf{cone}\left( A\right)$
+
+$B \subset \mathbf{cone}\left( B\right)$
+
+По опр:
+
+$\mathbf{cone}(A) = \left\{ \sum\limits_{i=1}^l\theta_i x_i \mid x_i \in A, \theta_i \ge 0\right\}$
+
+$\mathbf{cone}(B) = \left\{ \sum\limits_{j=1}^p\lambda_i y_i \mid y_j \in B, \lambda_j \ge 0\right\}$
+
+Тогда 
+$\mathbf{cone}(A \cup B) = \left\{ \sum\limits_{i=1}^{l+p}\theta_i z_i   \mid z_i \in A\cup B, \theta_i \ge 0\right\}$
+
+Так как, $A\cup B$ состоит из $x$, $y$(как определено выше)
+
+$\sum\limits_{i=1}^{l+p}\theta_i z_i = \sum\limits_{i=1}^l\theta_i x_i + \sum\limits_{i=l+1}^{l+p}\theta_i y_i$
+
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+Переобозначим 
+
+$\theta_{l+1} \rightarrow \lambda_1$
+
+$\theta_{l+2} \rightarrow \lambda_2$
+
+$\dots$
+
+$\theta_{l+p} \rightarrow \lambda_p$
+\vspace{\baselineskip}
+
+$y_{l+1} \rightarrow y_1$
+
+$y_{l+2} \rightarrow y_2$
+
+$\dots$
+
+$y_{l+p} \rightarrow y_p$
+
+Тогда можно записать:
+
+\begin{equation}\label{formula1}
+\mathbf{cone}(A \cup B) = \left\{ \sum\limits_{i=1}^l\theta_i x_i + \sum\limits_{j=1}^{p}\lambda_j y_j  \mid x_i \in A, y_j \in B, \theta_i, \lambda_j \ge 0\right\}
+\end{equation}
+
+
+Так как в формулу \hyperref[formula1]{(1)} входят всевозможные $\lambda_j, \theta_i \in \mathbb{R}$, то её можно представить как сумму Минковского всевозможных конических комбинаций, то есть:
+
+\begin{multline}
+\left\{ \sum\limits_{i=1}^l\theta_i x_i + \sum\limits_{j=1}^{p}\lambda_j y_j  \mid x_i \in A, y_j \in B, \theta_i, \lambda_j \ge 0\right\} = \left\{ \sum\limits_{i=1}^l\theta_i x_i \mid x_i \in A, \theta_i \ge 0\right\} +\\+
+\left\{\sum\limits_{j=1}^p\lambda_i y_i \mid y_j \in B, \lambda_j \ge 0\right\} 
+\end{multline}
+
+Что совпадает с суммой конических оболочек $A$ и $B$.
+\begin{equation}\label{formula2}
+\mathbf{cone}(A) + \mathbf{cone}(B) = \left\{ \sum\limits_{i=1}^l\theta_i x_i \mid x_i \in A, \theta_i \ge 0\right\} +
+\left\{\sum\limits_{j=1}^p\lambda_i y_i \mid y_j \in B, \lambda_j \ge 0\right\}
+\end{equation}
+
+$\Rightarrow \mathbf{cone}(A \cup B) = \mathbf{cone}(A) + \mathbf{cone}(B)$
+
+\end{proof}
+
+%3
+
+\section{}
+
+Докажите, что множество $S \subseteq \mathbb{R}^n$ выпукло тогда и только тогда, когда $(\alpha + \beta)S = \alpha S + \beta S$ для всех неотрицательных $\alpha$ и $\beta$
+
+$S - convex \Leftrightarrow \forall \alpha,\beta \geq 0 \rightarrow (\alpha + \beta)S = \alpha S + \beta S$
+
+\begin{proof}
+
+$\Longrightarrow$
+
+Так как $S - convex$, то $\forall \alpha,\beta \geq 0 \rightarrow \alpha S + \beta S - convex$
+\vspace{\baselineskip}
+
+1. Если $\alpha = \beta = 0$
+
+$ (\alpha + \beta)S = (0+0)S = 0$
+ 
+$\alpha S + \beta S = 0S + 0S = 0$
+
+$\Rightarrow  (\alpha + \beta)S = \alpha S + \beta S = 0$
+\vspace{\baselineskip}
+
+2. Если $\alpha=0, \beta \neq 0$(для случая $\beta = 0$ аналогично)
+
+$(\alpha + \beta)S = (0 + \beta)S = \beta S$
+
+$\alpha S + \beta S = 0S + \beta S = \beta S$
+
+$\Rightarrow  (\alpha + \beta)S = \alpha S + \beta S = \beta S$
+
+\vspace{\baselineskip}
+3. Если $\alpha \neq 0, \beta \neq0$ поделим на $(\alpha + \beta)$
+
+\[
+\lt(\frac{\alpha}{\alpha+\beta}\rt)S + \lt(1 - \frac{\alpha}{\alpha+\beta}\rt)S=S
+\]
+
+Пусть $ \frac{\alpha}{\alpha+\beta} = \theta \in [0;1]$
+
+Тогда надо доказать, что 
+\[
+\theta S + \lt(1 - \theta\rt)S=S
+\]
+
+
+\begin{equation}
+\theta S + \lt(1 - \theta\rt)S = \lt\{x_\theta \mid x_\theta =  \theta x_1+\lt(1-\theta\rt)x_2,\quad \forall x_1,x_2 \in S, \theta \in [0;1] \rt\}
+\end{equation}
+
+Так как $S$ - выпукло, то $\forall x_\theta \rightarrow x_\theta \in S$ 
+
+$\Rightarrow \theta S + \lt(1 - \theta\rt)S=S$ - верно.
+
+$\Rightarrow (\alpha + \beta)S = \alpha S + \beta S$ - верно.
+
+\vspace{\baselineskip}
+
+$\Longleftarrow$
+
+По условию имеем, что  $(\alpha + \beta)S = \alpha S + \beta S$ - верно.
+
+При $\alpha,\beta \neq 0 $ получаем $\theta S + \lt(1 - \theta\rt)S=S$ (случаи когда $\alpha =0$ и (или) $\beta =0$ рассматриваются аналогично) 
+ 
+\[
+\theta S + \lt(1 - \theta\rt)S = S \Leftrightarrow \lt\{\theta x_1+\lt(1-\theta\rt)x_2 = x_\theta \mid \forall x_1,x_2 \in S,x_\theta \in S, \theta \in [0;1] \rt\}
+\]
+
+Откуда следует выполнение определения выпуклого множества.
+
+$\Rightarrow S$ - выпукло.
+ 
+
+\begin{comment}
+Пусть $A = \alpha S$
+
+$B = \beta S$
+
+Тогда надо доказать, что $X + Y = Z - convex$
+
+$Z = \left\{z \mid z = \alpha x + \beta y, x \in X, y \in Y, \alpha, \beta \in \mathbb{R}^1_+\right\}$
+ 
+Возьмем две точки из $Z$: $z_1 = \alpha_1 x_1 + c_2 y_1, z_2 = c_1 x_2 + c_2 y_2$ и докажем, что отрезок между ними $\theta s_1 + (1 - \theta)s_2, \theta \in [0,1]$ так же принадлежит $S$
+ 
+ $$\theta s_1 + (1 - \theta)s_2$$
+ 
+ $$\theta (c_1 x_1 + c_2 y_1) + (1 - \theta)(c_1 x_2 + c_2 y_2)$$
+ 
+ $$c_1 (\theta x_1 + (1 - \theta)x_2) + c_2 (\theta y_1 + (1 - \theta)y_2)$$
+ 
+ $$c_1 x + c_2 y \in S$$
+\end{comment}
+
+	
+\end{proof}
+
+%4
+\section{}
+Пусть $x \in \mathbb{R}$ - случайная величина с заданным вероятностным распределением $\mathbb{P}(x = a_i) = p_i$, где $i = 1, \ldots, n$, а $a_1 < \ldots < a_n$. Говорят, что вектор вероятностей исходов $p \in \mathbb{R}^n$ принадлежит вероятностному симплексу, т.е. $P = \left\{ p \mid \mathbf{1}^Tp = 1, p \succeq 0\right\} = \left\{ p \mid p_1 + \ldots + p_n = 1, p_i \ge 0 \right\}$. 
+
+Определите, выпукло ли множество таких $p$, которые удовлетворяют условию:
+
+1. $\mathbb{P}(x > \alpha) \le \beta$
+
+2. $\mathbb{E} |x^{2017}| \le \alpha \mathbb{E}|x|$
+
+3. $\mathbb{E} |x^{2}| \ge \alpha $
+
+4. $\mathbb{V}x \ge \alpha$
+
+\begin{proof}
+
+1) Заметим, что данное неравенство эквивалентно линейному неравенству:
+
+$$\sum_{i: a_i>\alpha}p_i\leq\beta$$
+
+Которое задает полупространство $A$ - $convex$.
+
+Вероятностный симплекс $P$ - $convex$
+
+$\Rightarrow A \cap P - convex$
+
+2)
+$$\sum_{i=1}^{n}p_i\left(\left|a_i\right|^{2017}-\alpha\left|a_i\right|\right)\leq 0$$
+
+Пусть $\left(|a_i|^{2017}-\alpha|a_i|\right) = \beta_i$
+
+$$\sum_{i=1}^{n}p_i\beta_i\leq 0$$
+Также задает некоторое полупространство($convex$), которое при пересечении с симплексом дает выпуклое множество.
+
+
+3) $$\sum_{i=1}^{n}p_ia_i^2\geq\alpha$$
+
+Также линейное неравенство, задающее некоторое полупространство и, пересекая его с симплексом, снова получаем выпуклое множество
+
+4) $\mathbb{V}x = \mathbb{E}\left\{ (x - \mathbb{E}x)^2\right\} = \mathbb{E}x^2 - \left(\mathbb{E}x\right)^2$ = $\sum\limits_{i=1}^n p_i a_i^2 - \left(\sum\limits_{i=1}^n p_i a_i\right)^2 \ge \alpha$
+	
+Перейдем к другим координатам.
+
+$p_i a_i = y_i$ (при аффинном отображении сохраняется выпуклость).
+ 	
+$\sum\limits_{i=1}^n y_i a_i - \left(\sum\limits_{i=1}^n y_i\right)^2 \ge \alpha$
+
+$\left(\sum\limits_{i=1}^n y_i\right)^2 - \sum\limits_{i=1}^n y_i a_i \le \alpha$
+
+Слева от неравенства некоторый квадратичный функционал, который можно привести к каноническому виду и далее увидеть, что полученная каноничная форма есть выпуклая фигура.
+
+Перечение с симплексом даст снова выпуклое множество.
+\end{proof}
+
+\end{document} % конец документа
+
