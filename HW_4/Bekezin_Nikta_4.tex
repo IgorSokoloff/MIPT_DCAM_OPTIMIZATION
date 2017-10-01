@@ -1,0 +1,96 @@
+% Этот шаблон документа разработан в 2014 году
+% Данилом Фёдоровых (danil@fedorovykh.ru) 
+% для использования в курсе 
+% <<Документы и презентации в LaTeX>>, записанном НИУ ВШЭ
+% для Coursera.org: http://coursera.org/course/latex .
+% Исходная версия шаблона --- 
+% https://www.writelatex.com/coursera/latex/1.2
+
+\documentclass[a4paper,12pt]{article} % добавить leqno в [] для нумерации слева
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Заголовок
+\author{Бекезин Никита}
+\title{4 д/з по курсу методы оптимизации}
+\date{\today}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+
+\begin{center}
+	\textbf{Задача №1}
+\end{center}
+
+\begin{enumerate}
+	\item[] Найти и изобразить на плоскости множество, сопряженное к многогранному конусу:
+	$ \textbf{S} = \mathbf{conv}\{(-4, -1), (-2, -1), (-2, 1)\} + \mathbf{cone}\{(1, 0), (2, 1) \}$
+	\item[] \textbf{Решение}
+		\begin{enumerate}
+			\item[] Воспользуемся \textbf{теоремой}:
+			
+			Пусть $x_1,\ldots,x_m \in\mathbb{R}^n$. Сопряженным к многогранному множеству:\\ $$ \textbf{S} = \mathbf{conv}\{x_1, \ldots, x_k\} + \mathbf{cone}\{x_{k+1}, \ldots, x_m \}$$
+			является полиэдр (многогранник):
+			\[\textbf{S} = \left\{p \in \mathbb{R}^n \mid \langle{ p, x_i }\rangle \ge -1, i = \overline{1, k}; \langle{ p, x_i }\rangle \ge 0 , i =\overline{k+1, m} \right\} \]
+			
+			Используя теорему:
+			\[\textbf{S*} = \{p \in \mathbb{R}^n \mid -4p_1 - p_2 \ge -1\textbf{,} - 2p_1 -p_2 \ge -1\textbf{,} -2p_1 + p_2 \ge -1 \textbf{,} p_1 \ge 0 \textbf{,} 2p_1 + p_2 \ge 0\}\]
+			
+			Запишем условия в виде системы:
+			\[
+			\left\{
+			\begin{aligned}
+			p_2 &\leq -4p_1 + 1  \\
+			p_2 &\leq -2p_1 + 1\\
+			p_2 &\ge 2p_1 - 1\\
+			p_1 &\ge 0  \\
+			p_2 &\ge -2p_1
+			\end{aligned}
+			\right.
+			\]
+			
+		%	\includegraphics[scale=0.05]{graph1.jpg}
+		\includegraphics[scale=0.2]{graph1.jpg}
+			
+		\end{enumerate}
+\end{enumerate}
+
+\end{document}
