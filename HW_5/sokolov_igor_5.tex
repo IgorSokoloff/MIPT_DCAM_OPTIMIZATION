@@ -1,0 +1,255 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{comment}
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Интерлиньяж
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soulutf8} % Модификаторы начертания
+
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\al}{\alpha}
+\newcommand{\p}{\partial}
+\newcommand{\D}{\Delta}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\pagestyle{plain} % нумерация вкл.
+
+\rhead{\today}
+\lhead{Соколов Игорь, группа 573}
+
+%%% Заголовок
+\author{Соколов Игорь, группа 573}
+\title{ДЗ 5 по Методам Оптимизации. \newline Векторное дифференцирование}
+\date{\today}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+
+\section{}
+
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+\textbf{Ответ:} 
+
+\section{}
+
+Найти $\nabla f(x), f''(x)$, если $f(x) = \dfrac{-1}{1 + x^Tx}$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+Перепишем $f(x)$ в скаляром виде:
+
+
+$$f(x) = \frac{-1}{1 + \sum\limits_{i=1}^n x_i^2} $$
+$$\frac{\p f(x)}{\p x_k} = \frac{\p}{\p x_k}\lt(\frac{-1}{1 + \sum\limits_{i=1}^n x_i^2} \rt) = \frac{2x_k}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}$$
+
+$$\Rightarrow \nabla f(x) =  \frac{2{x}}{\lt(1 + {x}^T { x} \rt)^2}$$
+
+Пусть $g_k = \dfrac{\p f(x)}{\p x_k} \rightarrow H_{k,p} = \dfrac{\p g_k}{\p x_p}$
+
+Тогда 
+\begin{multline}
+H_{k,p} = \dfrac{\p^2 f(x)}{\p x_p \p x_k} = \frac{\p}{\p x_p}\lt(\frac{2x_k}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\rt) = \frac{2\delta_{k,p}\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2 - 8x_kx_p\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^4} =\\= \frac{2}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\lt(\delta_{k,p} - \frac{4x_p x_k}{1 + \sum\limits_{i=1}^n x_i^2} \rt)
+\end{multline}
+
+$$\Rightarrow f''(x) =  \frac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \frac{xx^T}{1 + x^Tx} \rt) $$
+
+\textbf{Ответ:}
+
+$\nabla f(x) =  \dfrac{2{x}}{\lt(1 + {x}^T { x} \rt)^2}$
+
+$f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{xx^T}{1 + x^Tx} \rt)$
+
+%3
+
+\section{}
+
+Найти $f'(X)$, если $f(X) = \det X$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+Пусть $g(X) = \log\det X$
+
+Найдем $g(X + \Delta X) = \log\det X$ , где $\Delta X$ - некоторая малая матрица по норме Фробениуса.
+
+Тогда $f(X + \Delta X) = e^{g(X + \Delta X)} = \det (X + \D X)$
+
+\vspace{\baselineskip}
+
+Вспомним, что производную имеет смысл линейной аппроксимация функции в окрестности точки.
+
+Заметим, что:
+ \begin{multline}
+ \log\det\left[ X+ \Delta X\right] = \log \det \left[ X^{1/2} \left(I + X^{-1/2} \Delta X X^{-1/2}\right)X^{1/2}\right] =\\= \log \det \left[ X^{1/2} \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right] \det \left[ X^{1/2}\right] =\\= \log \det \left[ X \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]=\\= \log \det \left[ X \right] + \log\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]
+ \end{multline}
+ 
+Известно, что определитель матрицы равен произведению её собственных значений
+ 
+ $$\log\det\left[ X+ \Delta X\right] = \log\det X + \sum\limits_{i=1}^n \log(1 + \lambda_i)$$
+ 
+Где $\lambda_i$ - собственные числа матрицы $X^{-1/2} \Delta X X^{-1/2}$. Далее используем факт "малости" матрицы $\Delta X$ (в смысле нормы этой матрицы), следовательно для приближения первого порядка справедливо: $\log (1 + \lambda_i) \approx \lambda_i$ т.к. $\lambda_i$ так же должны быть малыми.
+ 
+\begin{multline}\label{eq_log_det}
+ \log\det\left[ X+ \Delta X\right] \approx \log\det X + \sum\limits_{i=1}^n \lambda_i$$
+ $$\log\det\left[ X+ \Delta X\right] \approx \log\det X + \mathbf{tr}\left[X^{-1/2} \Delta X X^{-1/2}\right] =\\= \log\det X + \mathbf{tr}\left[X^{-1/2} X^{-1/2} \Delta X \right] = \log\det X + \mathbf{tr}\left[X^{-1}\Delta X \right]
+ \end{multline}
+ 
+ Заметим, что след произведения матриц есть обобщения скалярного произведения на пространство матриц. 
+ 
+След матрицы обладает следующий свойством:
+ 
+ $$\mathbf{tr}(A^TB) = \mathbf{tr}(AB^T) = \mathbf{tr}(B^TA) = \mathbf{tr}(BA^T)$$. 
+ 
+ Стало быть, справедливо:
+ 
+ \begin{equation}\label{eq_g}
+ g(X + \Delta X) \approx g(X) + \langle g'(X), \Delta X \rangle
+ \end{equation}
+ 
+ Из \eqref{eq_log_det} $\Rightarrow$ $$e^{\log\det\left[ X+ \Delta X\right]} = e^{\log\det X + \mathbf{tr}\left[X^{-1}\Delta X \right]} $$
+ $$\det\left[ X+ \Delta X\right] = e^{\log\det X} e^{\mathbf{tr}\left[X^{-1}\Delta X \right]} $$
+ 
+ В силу малости матрицы $\D X$ справедливо $e^{\mathbf{tr}\left[X^{-1}\Delta X \right]} = 1 + \mathbf{tr}\left[X^{-1}\Delta X \right] $
+ 
+ $$\Rightarrow\det\left[ X+ \Delta X\right] = \det X\lt( 1 + \mathbf{tr}\left[X^{-1}\Delta X \right]\rt)  $$
+ \begin{equation}\label{eq_3}
+ \det\left[ X+ \Delta X\right] = \det X+ \det X\mathbf{tr}\left[X^{-1}\Delta X \right]
+ \end{equation}
+ 
+ Заметим, что $det X$ - скаляр и в силу свойства линейности следа матрицы $$\mathbf{tr}\lt(\al A \rt) = \al \mathbf{tr}\lt(A \rt)$$
+ 
+ Получаем 
+ 
+ $$ \det\left[ X+ \Delta X\right] = \det X+ \mathbf{tr}\left[(\det X) X^{-1}\Delta X \right]$$
+ 
+ Пользуясь аналогичными примеру \eqref{eq_g} рассуждениями, получаем:
+ 
+ $$ \det\left[ X+ \Delta X\right] = \det X+ \mathbf{tr}\langle (\det X) X^{-1}, \Delta X \rangle$$
+ 
+Значит, $f'(X) = det(X) X^{-1}$
+
+\vspace{\baselineskip}
+
+\textbf{Ответ:} $f'(X) = det(X) X^{-1}$
+
+%4
+\section{}
+
+Найти $f''(X)$, если $f(X) = \log \det X$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+\textbf{Ответ:} 
+
+%5
+\section{}
+
+Найти градиент и гессиан функции $f : \mathbb{R}^n \to \mathbb{R}$, $f(x) = \log \sum\limits_{i=1}^m \exp (a_i^Tx + b_i), \;\;\;\; a_1, \ldots, a_m \in \mathbb{R}^n; \;\;\;  b_1, \ldots, b_m  \in \mathbb{R}$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+\textbf{Ответ:} 
+
+
+
+
+%6
+\section{}
+
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+
+\end{document} % конец документа
+
