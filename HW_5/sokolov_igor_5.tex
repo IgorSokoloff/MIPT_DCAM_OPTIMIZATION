@@ -72,6 +72,9 @@
 \newcommand{\al}{\alpha}
 \newcommand{\p}{\partial}
 \newcommand{\D}{\Delta}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\mbf}{\mathbf}
 
 
 \pagestyle{fancy}
@@ -93,6 +96,7 @@
 
 \section{}
 
+Найти $\nabla f(x)$, если $f(x) = \|Ax\| - \|x^TA\|$
 
 \vspace{\baselineskip}
 
@@ -100,7 +104,24 @@
 
 \vspace{\baselineskip}
 
-\textbf{Ответ:} 
+Перепишем в скалярном виде:
+
+$$f(x) = \sqrt{\sum\limits_{i=1}^n\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)^2} - \sqrt{\sum\limits_{j=1}^n\lt(\sum\limits_{i=1}^n x_ia_{ij}\rt)^2}$$
+
+
+\begin{multline}
+\fr{\p f}{\p x_k} = \fr{\sum\limits_{i=1}^n 2a_{ik}\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)}{2\sqrt{\sum\limits_{i=1}^n\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)^2}}
+- 
+\fr{\sum\limits_{j=1}^n 2a_{kj}\lt(\sum\limits_{i=1}^n a_{ij}x_j\rt)}{2\sqrt{\sum\limits_{i=1}^n\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)^2}} =\\= 
+\fr{\sum\limits_{i=1}^n a_{ik}\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)}{\sqrt{\sum\limits_{i=1}^n\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)^2}}
+- 
+\fr{\sum\limits_{j=1}^n a_{kj}\lt(\sum\limits_{i=1}^n a_{ij}x_j\rt)}{\sqrt{\sum\limits_{i=1}^n\lt(\sum\limits_{j=1}^n a_{ij}x_j\rt)^2}}
+=\\= \fr{a_k^T\lt(Ax\rt)}{\|Ax\|} - \fr{a_k(x^TA)^T}{\|x^TA\|} = \fr{a_k^T\lt(Ax\rt)}{\|Ax\|} - \fr{a_k(A^Tx)}{\|x^TA\|} 
+\end{multline}
+
+$$\nabla f(x) = \fr{A^T\lt(Ax\rt)}{\|Ax\|} - \fr{A(A^Tx)}{\|x^TA\|} $$
+
+\textbf{Ответ:} $\nabla f(x) = \dfr{A^T\lt(Ax\rt)}{\|Ax\|} - \dfr{A(A^Tx)}{\|x^TA\|} $
 
 \section{}
 
@@ -124,22 +145,26 @@ $$\Rightarrow \nabla f(x) =  \frac{2{x}}{\lt(1 + {x}^T { x} \rt)^2}$$
 
 Тогда 
 \begin{multline}
-H_{k,p} = \dfrac{\p^2 f(x)}{\p x_p \p x_k} = \frac{\p}{\p x_p}\lt(\frac{2x_k}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\rt) = \frac{2\delta_{k,p}\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2 - 8x_kx_p\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^4} =\\= \frac{2}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\lt(\delta_{k,p} - \frac{4x_p x_k}{1 + \sum\limits_{i=1}^n x_i^2} \rt)
+H_{k,p} = \dfrac{\p^2 f(x)}{\p x_p \p x_k} = \frac{\p}{\p x_p}\lt(\frac{2x_k}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\rt) =\\= \frac{2\delta_{k,p}\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2 - 8x_kx_p\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^4} = \frac{2}{\lt(1 + \sum\limits_{i=1}^n x_i^2 \rt)^2}\lt(\delta_{k,p} - \frac{4x_p x_k}{1 + \sum\limits_{i=1}^n x_i^2} \rt)
 \end{multline}
 
-$$\Rightarrow f''(x) =  \frac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \frac{xx^T}{1 + x^Tx} \rt) $$
+$$\Rightarrow f''(x) =  \frac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \frac{4xx^T}{1 + x^Tx} \rt) $$
 
 \textbf{Ответ:}
 
 $\nabla f(x) =  \dfrac{2{x}}{\lt(1 + {x}^T { x} \rt)^2}$
 
-$f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{xx^T}{1 + x^Tx} \rt)$
+$f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{4xx^T}{1 + x^Tx} \rt)$
 
 %3
 
-\section{}
+\section{}\label{ref_task_3}
 
 Найти $f'(X)$, если $f(X) = \det X$
+
+{\bf Примечание:} здесь под $f'(X)$ подразумевается оценка фунции $f(X)$ первого порядка в смысле разложения в ряд Тейлора:
+     $$f(X + \Delta X) \approx f(X) + \mathbf{tr}(f'(X)^T \Delta X)$$
+
 
 \vspace{\baselineskip}
 
@@ -149,41 +174,51 @@ $f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{xx^T}{1 + x^Tx} 
 
 Пусть $g(X) = \log\det X$
 
-Найдем $g(X + \Delta X) = \log\det X$ , где $\Delta X$ - некоторая малая матрица по норме Фробениуса.
+Найдем $g(X + \Delta X) = \log\det X$ , где $\Delta X$ - некоторая малая матрица по норме Фробениуса ( $ $).
 
 Тогда $f(X + \Delta X) = e^{g(X + \Delta X)} = \det (X + \D X)$
 
 \vspace{\baselineskip}
 
-Вспомним, что производную имеет смысл линейной аппроксимация функции в окрестности точки.
+Вспомним, что производная имеет смысл линейной аппроксимация функции в окрестности точки.
 
 Заметим, что:
  \begin{multline}
  \log\det\left[ X+ \Delta X\right] = \log \det \left[ X^{1/2} \left(I + X^{-1/2} \Delta X X^{-1/2}\right)X^{1/2}\right] =\\= \log \det \left[ X^{1/2} \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right] \det \left[ X^{1/2}\right] =\\= \log \det \left[ X \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]=\\= \log \det \left[ X \right] + \log\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]
  \end{multline}
  
-Известно, что определитель матрицы равен произведению её собственных значений
+Известно, что {\it определитель матрицы равен произведению её собственных значений}
  
  $$\log\det\left[ X+ \Delta X\right] = \log\det X + \sum\limits_{i=1}^n \log(1 + \lambda_i)$$
  
 Где $\lambda_i$ - собственные числа матрицы $X^{-1/2} \Delta X X^{-1/2}$. Далее используем факт "малости" матрицы $\Delta X$ (в смысле нормы этой матрицы), следовательно для приближения первого порядка справедливо: $\log (1 + \lambda_i) \approx \lambda_i$ т.к. $\lambda_i$ так же должны быть малыми.
  
-\begin{multline}\label{eq_log_det}
- \log\det\left[ X+ \Delta X\right] \approx \log\det X + \sum\limits_{i=1}^n \lambda_i$$
- $$\log\det\left[ X+ \Delta X\right] \approx \log\det X + \mathbf{tr}\left[X^{-1/2} \Delta X X^{-1/2}\right] =\\= \log\det X + \mathbf{tr}\left[X^{-1/2} X^{-1/2} \Delta X \right] = \log\det X + \mathbf{tr}\left[X^{-1}\Delta X \right]
+
+ $$\log\det\left[ X+ \Delta X\right] \approx \log\det X + \sum\limits_{i=1}^n \lambda_i$$
+ 
+ Также пользуемся свойством следа матрицы: {\it след матрицы равен сумме её собственных значений}.
+ 
+ \begin{multline}\label{eq_log_det}
+ \log\det\left[ X+ \Delta X\right] \approx \log\det X + \mathbf{tr}\left[X^{-1/2} \Delta X X^{-1/2}\right] =\\= \log\det X + \mathbf{tr}\left[X^{-1/2} X^{-1/2} \Delta X \right] = \log\det X + \mathbf{tr}\left[X^{-1}\Delta X \right]
  \end{multline}
+ 
+ Так как по условию матрица $X$ - квадратная, симметричная, то $\lt(X^{-1}\rt)^T = \lt(X^{T}\rt)^{-1} = X^{-1}$.
  
  Заметим, что след произведения матриц есть обобщения скалярного произведения на пространство матриц. 
  
-След матрицы обладает следующий свойством:
+След матрицы также обладает следующий свойством:
  
  $$\mathbf{tr}(A^TB) = \mathbf{tr}(AB^T) = \mathbf{tr}(B^TA) = \mathbf{tr}(BA^T)$$. 
  
- Стало быть, справедливо:
+В силу всех вышеприведенных фактов, справедливо:
  
  \begin{equation}\label{eq_g}
  g(X + \Delta X) \approx g(X) + \langle g'(X), \Delta X \rangle
  \end{equation}
+ 
+\begin{equation}\label{eq_dg}
+\Rightarrow g'(X) = X^{-1}
+\end{equation}
  
  Из \eqref{eq_log_det} $\Rightarrow$ $$e^{\log\det\left[ X+ \Delta X\right]} = e^{\log\det X + \mathbf{tr}\left[X^{-1}\Delta X \right]} $$
  $$\det\left[ X+ \Delta X\right] = e^{\log\det X} e^{\mathbf{tr}\left[X^{-1}\Delta X \right]} $$
@@ -216,13 +251,72 @@ $f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{xx^T}{1 + x^Tx} 
 
 Найти $f''(X)$, если $f(X) = \log \det X$
 
+{\bf Примечание:} здесь под $f''(X)$ подразумевается оценка фунции $f(X)$ второго порядка в смысле разложения в ряд Тейлора:
+     $$f(X + \Delta X) \approx f(X) + \mathbf{tr}(f'(X)^T \Delta X) + \frac{1}{2}\mathbf{tr}(\Delta X^T f''(X) \Delta X)$$
+
 \vspace{\baselineskip}
 
 \textbf{Решение:}
 
 \vspace{\baselineskip}
 
-\textbf{Ответ:} 
+Задача решается аналогично задаче \ref{ref_task_3}.
+
+Воспользуемся примечанием к задаче.
+
+\begin{multline}
+\log\det\left[ X+ \Delta X\right] = \log \det \left[ X^{1/2} \left(I + X^{-1/2} \Delta X X^{-1/2}\right)X^{1/2}\right] =\\= \log \det \left[ X^{1/2} \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right] \det \left[ X^{1/2}\right] =\\= \log \det \left[ X \right]\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]=\\= \log \det \left[ X \right] + \log\det \left[ I + X^{-1/2} \Delta X X^{-1/2}\right]
+\end{multline}
+
+Известно, что {\it определитель матрицы равен произведению её собственных значений}
+
+$$\log\det\left[ X+ \Delta X\right] = \log\det X + \sum\limits_{i=1}^n \log(1 + \lambda_i)$$
+
+Где $\lambda_i$ - собственные числа матрицы $X^{-1/2} \Delta X X^{-1/2}$. Далее используем факт "малости" матрицы $\Delta X$ (в смысле нормы этой матрицы), следовательно для приближения второго порядка справедливо: $\log (1 + \lambda_i) \approx \lambda_i - \dfr{\lambda_i^2}{2}$ т.к. $\lambda_i$ так же должны быть малыми.
+
+$$\log\det\left[ X+ \Delta X\right] \approx \log\det X + \sum\limits_{i=1}^n \lambda_i - \fr{1}{2}\sum\limits_{i=1}^n \lambda_i^2$$
+
+{\bf Докажем}, что $\mathbf{tr}(XX) = \sum\limits_{i=1}^n \lambda_i^2$, где $\lambda_i$ - собственные значения матрицы $X$, а $XX = X^2$.
+
+\begin{proof}
+
+Пусть $S$ - матрица перехода из исходного базиса матрицы $X$ к базису, в котором матрица $X$ диагональна и на её диагонали стоят собственные значения (столбцы $S$ есть собственные вектора матрицы $X$ записанные в старом базисе)
+
+Тогда $X_{eigen} = S^{-1}XS$
+
+Воспользуемся свойством циклической перестановки: 
+
+$\mathbf{tr}(ABC) = \mathbf{tr}(BCA) =\mathbf{tr}(CAB)$
+
+$\mathbf{tr}(X_{eigen}) = \sum\limits_{i=1}^n \lambda_i = \mathbf{tr}(S^{-1}XS)= \mathbf{tr}(SS^{-1}X)= \mbf{tr}(X)$ (доказали ранее сформулированное свойство)
+
+Воспользуемся еще одним свойством следа матрицы: 
+
+$ \mbf{tr}(X^TY) = \sum\limits_{i,j} X_{i,j}Y_{i,j}$
+
+В нашем случае:
+
+$ \mbf{tr}(X^TX) = \mbf{tr}(XX) = \sum\limits_{i,j} X_{i,j}X_{i,j}$
+
+$\Rightarrow \mbf{tr}(X_{eigen}X_{eigen}) = \sum\limits_{i=1}^n  \lambda_i^2$
+
+Но $\mbf{tr}(X_{eigen}X_{eigen}) = \mbf{tr}(S^{-1}XSS^{-1}XS) = \mbf{tr}(S^{-1}XXS) = \mbf{tr}(SS^{-1}XX) = \mbf{tr}(XX)$ 
+
+$\Rightarrow \mbf{tr}(XX) =\sum\limits_{i=1}^n \lambda_i^2$
+\end{proof}
+\begin{multline}\label{eq_log_det}
+\log\det\left[ X+ \Delta X\right] \approx \log\det X + \mathbf{tr}\left[X^{-1/2} \Delta X X^{-1/2}\right] - \fr{1}{2}\mbf{tr}\lt[X^{-1/2} \Delta X X^{-1/2}X^{-1/2} \Delta X X^{-1/2}\rt]
+=\\= 
+\log\det X + \mathbf{tr}\left[X^{-1/2} X^{-1/2} \Delta X \right] - \fr{1}{2}\mbf{tr}\lt[X^{-1} \Delta X X^{-1} \Delta X \rt] =\\= \log\det X + \mathbf{tr}\left[\lt(X^{-1}\rt)^T\Delta X \right] + \fr{1}{2}\mbf{tr}\lt[\Delta X^T \lt(-X^{-1} X^{-1}\rt) \Delta X \rt]
+\end{multline}
+
+В примере \eqref{eq_log_det} воспользовались тем что $X$ - квадратная и симметричная.
+
+$\Rightarrow f''(X) = -\lt(X^{-1}\rt)^2$
+
+\vspace{\baselineskip}
+
+\textbf{Ответ:} $f''(X) = -\lt(X^{-1}\rt)^2$
 
 %5
 \section{}
@@ -233,22 +327,31 @@ $f''(x) =  \dfrac{2}{\lt(1 + x^Tx\rt)^2}\lt(\mathbb{E} - \dfrac{xx^T}{1 + x^Tx} 
 
 \textbf{Решение:}
 
-\vspace{\baselineskip}
+\begin{equation}
+\fr{\p f}{x_k} = \fr{\sum\limits_{i=1}^m a_{ik} \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)}
+\end{equation}
+
+\begin{equation}
+\nabla f = \fr{\sum\limits_{i=1}^m a_{i} \exp \lt(a_{i}^Tx + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)}
+\end{equation}
+
+Пусть $g_k = \dfr{\p f}{\p x_k}$
+
+$H_{k,p} = \dfr{\p g}{\p x_p}$
+
+Тогда 
+
+\begin{multline}
+H_{k,p} = \fr{\p g}{\p x_p} = \fr{\p^2 f}{\p x_p \p x_k} =\\= \fr{\sum\limits_{i=1}^m a_{ik}a_{ip} \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)} - \fr{\lt[\sum\limits_{i=1}^m a_{ik} \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)\rt]\lt[\sum\limits_{i=1}^m a_{ik} \exp \lt(\sum\limits_{j=1}^n a_{ip}x_j + b_i\rt) \rt]}{\lt[\sum\limits_{i=1}^m \exp \lt(\sum\limits_{j=1}^n a_{ij}x_j + b_i\rt)\rt]^2}
+\end{multline}
+
+$$f''(x) = \fr{\sum\limits_{i=1}^m a_{i}a_{i}^T \exp \lt( a_{i}^Tx + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)} - \fr{\lt[\sum\limits_{i=1}^m a_{i} \exp \lt( a_{i}^Tx + b_i\rt)\rt]\lt[\sum\limits_{i=1}^m a_{i}^T \exp \lt(a_{i}^Tx + b_i\rt) \rt]}{\lt[\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)\rt]^2}$$
 
 \textbf{Ответ:} 
 
+$\nabla f = \dfr{\sum\limits_{i=1}^m a_{i} \exp \lt(a_{i}^Tx + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)}$
 
-
-
-%6
-\section{}
-
-
-\vspace{\baselineskip}
-
-\textbf{Решение:}
-
-\vspace{\baselineskip}
+$f''(x) = \dfr{\sum\limits_{i=1}^m a_{i}a_{i}^T \exp \lt( a_{i}^Tx + b_i\rt)}{\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)} - \dfr{\lt[\sum\limits_{i=1}^m a_{i} \exp \lt( a_{i}^Tx + b_i\rt)\rt]\lt[\sum\limits_{i=1}^m a_{i}^T \exp \lt(a_{i}^Tx + b_i\rt) \rt]}{\lt[\sum\limits_{i=1}^m \exp \lt(a_{i}^Tx + b_i\rt)\rt]^2}$
 
 
 \end{document} % конец документа
