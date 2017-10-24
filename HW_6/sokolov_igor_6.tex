@@ -1,0 +1,406 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{comment}
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Интерлиньяж
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soulutf8} % Модификаторы начертания
+
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\al}{\alpha}
+\newcommand{\p}{\partial}
+\newcommand{\D}{\Delta}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bb}{\mathbb}
+\newcommand{\wt}{\widetilde}
+\newcommand{\La}{\Lambda}
+\newcommand{\la}{\lambda}
+\newcommand{\opn}{\operatorname}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\pagestyle{plain} % нумерация вкл.
+
+\rhead{\today}
+\lhead{Соколов Игорь, группа 573}
+
+%%% Заголовок
+\author{Соколов Игорь, группа 573}
+\title{ДЗ 6 по Методам Оптимизации. \newline Выпуклые функции. Сильно выпуклые функции.}
+\date{\today}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+
+
+\section{}
+
+Выпуклы ли следующие функции: 
+
+1. $f(x) = e^x - 1, \; x \in \mathbb{R};\;\;\; $
+
+2. $f(x_1, x_2) = x_1x_2, \; x \in \mathbb{R}^2_{++};\;\;\; $
+
+3. $f(x_1, x_2) = 1/(x_1x_2), \; x \in \mathbb{R}^2_{++}$?
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\vspace{\baselineskip}
+
+\subsection{}
+ $f(x) = e^x - 1$, тогда $f''(x) = e^x > 0$ на $R \Rightarrow$ по дифференциальному критерию 2-го порядка $f$ выпукла на $R$.
+
+
+\subsection{}
+$f(x_1, x_2) = x_1x_2$. 
+
+$$
+f''(x) = 
+\begin{pmatrix}
+0 & 1 \\
+1 & 0 \\
+\end{pmatrix}.
+$$
+
+Эта форма не является положительно определенной. 
+
+$\Rightarrow f(x_1,x_2)$  не выпукла.
+
+\subsection{}
+
+$f(x_1, x_2) = 1/(x_1 x_2)$.
+$$
+f''(x) = 
+\begin{pmatrix}
+\dfr{2}{x_1^3x_2} & \dfr{1}{x_1^2x_2^2} \\
+\dfr{1}{x_1^2x_2^2} & \dfr{2}{x_1x_2^3} \\
+\end{pmatrix}.
+$$
+
+$\Delta_1 = \dfr{2}{x_1^3x_2} > 0$ и $\Delta_2= \det(f''(x)) = \dfr{3}{x_1^4x_2^4} > 0$ на $R^2_{++}$. 
+
+Значит $f''(x)$ положительно определена $\Rightarrow$ по критерию 2-го порядка $f$ выпукла на $R^2_{++}$
+
+
+\section{}
+
+Докажите, что множество $S = \left\{ x \in \mathbb{R}^n_{++} \mid \prod\limits_{i=1}^n x_i \geq 1 \right\}$ выпукло.
+
+\vspace{\baselineskip}
+
+\begin{proof}
+
+$$S = \left\{ x \in \mathbb{R}^n_{++} \mid \prod\limits_{i=1}^n x_i \geq 1 \right\} =\left\{ x \in \mathbb{R}^n_{++} \mid x_n \geq \fr{1}{\prod\limits_{i=1}^{n-1}x_i}
+ \right\} $$
+
+$\Rightarrow S - $ надграфик функции $f(x_1,\dots, x_{n-1}) = \dfr{1}{\prod\limits_{i=1}^{n-1}x_i}$
+
+$$\fr{\p f}{\p x_k} = -\fr{1}{x_k^2 \prod\limits_{i = 1, i \neq k}^{n-1}x_i}$$
+
+$$\fr{\p^2 f}{\p x_k x_k} = \fr{2}{x_k^3 \prod\limits_{i = 1, i \neq k}^{n-1}x_i} = \fr{2}{x_k^2 \prod\limits_{i = 1}^{n-1}x_i}  = \fr{2f}{x_k^2}$$
+
+$$\fr{\p^2 f}{\p x_k x_p} = \fr{1}{x_k^2 x_p^2 \prod\limits_{i = 1, i \neq k, p }^{n-1}x_i}= \fr{2}{x_k x_p \prod\limits_{i = 1}^{n-1}x_i}  = \fr{2f}{x_k x_p}$$
+
+
+$$f''(x) = 2f
+\begin{pmatrix}
+\dfr{1}{x_1^2} & \dfr{1}{x_1 x_2}& \dfr{1}{x_1 x_3}&\dfr{1}{x_1 x_4}&\dots& \dfr{1}{x_1 x_n}\\
+\dfr{1}{x_2 x_1} & \dfr{1}{x_2^2}& \dfr{1}{x_2 x_3}&\dfr{1}{x_2 x_4}&\dots& \dfr{1}{x_2 x_n}\\
+\dfr{1}{x_3 x_1} & \dfr{1}{x_3 x_2}& \dfr{1}{x_3^2}&\dfr{1}{x_3 x_4}&\dots& \dfr{1}{x_3 x_n}\\
+\dfr{1}{x_4 x_1} & \dfr{1}{x_4 x_2}& \dfr{1}{x_4 x_3}&\dfr{1}{x_4^2}&\dots& \dfr{1}{x_4 x_n}\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+\dfr{1}{x_n x_1} & \dfr{1}{x_n x_2}& \dfr{1}{x_n x_3}&\dfr{1}{x_n x_4}&\dots& \dfr{1}{x_n ^2}\\
+\end{pmatrix}.$$
+
+$\Delta_1 = 
+\begin{vmatrix}
+\dfr{1}{x_1^2} & \dfr{1}{x_1 x_2}\\
+\dfr{1}{x_2 x_1} & \dfr{1}{x_2^2}\\
+\end{vmatrix} = 0$
+
+\begin{multline}
+\Delta_2 =  
+\begin{vmatrix}
+\dfr{1}{x_1^2} & \dfr{1}{x_1 x_2}& \dfr{1}{x_1 x_3}\\
+\dfr{1}{x_2 x_1} & \dfr{1}{x_2^2}& \dfr{1}{x_2 x_3}\\
+\dfr{1}{x_3 x_1} & \dfr{1}{x_3 x_2}& \dfr{1}{x_3^2}\\
+\end{vmatrix} 
+=
+\dfr{1}{x_1^2}
+\begin{vmatrix}
+\dfr{1}{x_2^2}& \dfr{1}{x_2 x_3}\\
+\dfr{1}{x_3 x_2}& \dfr{1}{x_3^2}\\
+\end{vmatrix}
+-
+\dfr{1}{x_1 x_2}
+\begin{vmatrix}
+\dfr{1}{x_2 x_1} &\dfr{1}{x_2 x_3}\\
+\dfr{1}{x_3 x_1} &	\dfr{1}{x_3^2}\\
+\end{vmatrix}
++
+\dfr{1}{x_1 x_3}
+\begin{vmatrix}
+\dfr{1}{x_2 x_1} & \dfr{1}{x_2^2}\\
+\dfr{1}{x_3 x_1} & \dfr{1}{x_3 x_2}\\
+\end{vmatrix}
+=\\= \dfr{1}{x_1^2} \cdot 0 - \dfr{1}{x_1 x_2} \cdot 0 + \dfr{1}{x_1 x_3}\cdot 0 = 0
+\end{multline}
+
+
+И так далее можно показать, что $\forall i \rightarrow \Delta_i = 0$ 
+
+\vspace{\baselineskip}
+
+{\bf То есть:}
+Определитель матрицы $n\times n$ можно подсчитать разложением по строке. 
+После одного разложения надо подсчитать сумму $n$ определителей матриц размера $n-1\times n-1$
+
+
+Применим эту операцию рекурсивно для подсчета определителей каждой из матриц(рекурсивно опускаемся вниз матрицы).
+
+После проделывания этой процедуры $n-2$ раза ($n-2$ разложения по строке), необходимо будет подсчитать определители вида  
+$\begin{vmatrix} 
+\dfr{1}{x_{n-1} x_j} & \dfr{1}{x_{n-1} x_{j+k}}\\
+\dfr{1}{x_{n} x_j} & \dfr{1}{x_{n} x_{j+k}}\\
+\end{vmatrix} = 0 \quad \forall j \in [1, n]$
+
+Затем поднимаясь вверх по рекурсии получим увидем, что $\forall i \rightarrow \Delta_i = 0$
+
+\vspace{\baselineskip}
+
+$\Rightarrow f''(x) $ положительно полуопределенная матрица  
+
+$\Rightarrow $ по критерию 2-го порядка $f(x)$ выпуклая функция.
+
+$\Rightarrow $ Надграфик $f(x)$ - выпуклое множество.
+
+$\Rightarrow S - $ выпуклое множество.
+
+\end{proof}
+%3
+
+\section{}
+
+Докажите, что функция 
+
+1. $f(X) = \mathbf{tr}(X^{-1}), X \in S^n_{++}$ выпукла;
+
+2. $f(X) = (\det X)^{1/n}, X \in S^n_{++}$ вогнута.
+
+\subsection{}
+\begin{proof}
+Пусть $g(t) =  {\bf tr}(Z + tV)$, где  $Z\succ 0$ и $V \in {\bf S}^n_{++} $
+
+\begin{multline}\label{tr_eq}
+g(t) = {\bf tr}(\lt(Z + tV)^{-1}\rt) 
+=\\= 
+{\bf tr}\lt((Z^{-1}(\bb E + tZ^{-1/2} V Z^{-1/2})^{-1}\rt) 
+=\\= 
+{\bf tr}\lt((Z^{-1}Q(\bb E + t\La)^{-1}Q^T\rt)
+=\\= 
+{\bf tr}\lt(Q^TZ^{-1}Q(\bb E + t\La)^{-1}\rt)
+=\\=
+\sum \limits_{i=1}^{n} \fr{\lt(Q^TZ^{-1}Q \rt)_{ii}}{1 + t\lambda_i}
+\end{multline}
+
+В серии равенств выше мы воспользовались следующим:
+
+\begin{itemize} 
+	\item $Z^{-1/2}VZ^{-1/2} = Q\La Q^{-1} $, где $Q$ - матрица перехода к базису из собственных векторов.
+	\item ${\bf tr}( \bb E + t\La)^{-1} = \sum \limits_{i=1}^{n}\dfr{1}{1 + t\lambda_i}$
+	\item ${\bf tr}(Q^TZ^{-1}Q( \bb E + t\La)^{-1}) = {\bf tr}(Q^TZ^{-1}Q\lt[( \bb E + t\La)^{-1}\rt]^T) = \sum\limits_{i}\dfr{\lt(Q^TZ^{-1}Q \rt)_{ii}}{1 + t\lambda_i}$, так как ${\bf tr}(XY^T) = \sum\limits_{i,j}X_{ij}Y_{ij}$  и  $\lt(\bb E + t\La\rt)^{-1}$ диагональна
+\end{itemize}	
+
+В последнем равенстве выражения \eqref{tr_eq} видим неотрицательную комбинацию выпуклых функций $\phi(t) = \dfr{1}{1 + \la_i t}$ (их выпуклость легко показать, через критерий 2-го порядка)
+
+$\Rightarrow f(X) - $ выпуклая функция.
+\end{proof}	
+	
+\subsection{}
+
+\begin{proof}
+Пусть $g(t) =  f(Z + tV)$, где  $Z\succ 0$ и $V \in {\bf S}^n_{++} $
+
+$$
+(\det (Z + Vt))^{1/n} = (\det Z)^{1/n} (\det (I + tZ^{-1/2}VZ^{-1/2}))^{1/n} = (\det Z)^{1/n} \left(\prod\limits_{i=1}^n (1 + t \lambda_i)\right)^{1/n}.
+$$
+
+Где $\la_i$ - собственные значения матрицы $Z^{-1/2}VZ^{-1/2}$ и $det(Z) > 0$
+
+Легко показать по критерию 2-го порядка, что $\left(\prod\limits_{i=1}^n (1 + t \lambda_i)\right)^{1/n}$ вогнутая функция.
+
+Действительно:
+
+$ \dfr{\p^2 f}{\p x_i \p x_j} =\dfrac{f}{n^2}A \quad \text{где  } \ A_{ij}= \begin{cases}(1-n)x_i^{-2} \quad &\text{ if }\ i=j \\
+x_i^{-1}x_j^{-1} \quad &\text{ if }\ i\ne j \end{cases} $
+
+Пусть $y_i = 1/x_i$. Нам надо доказать, что $v^TAv \le 0 \forall v$
+
+Действительно:
+$v^TAv=\left(\sum_{i=1}^n y_iv_i\right)^2-n \sum_{i=1}^n y_i^2 v_i^2 \le 0$ по формуле Коши-Буняковского примененного к $1\times (y_iv_i)$
+
+$\Rightarrow $ показали вогнутость функции $\left(\prod\limits_{i=1}^n (1 + t \lambda_i)\right)^{1/n}$
+
+$\Rightarrow f(X) - $ вогнутая.
+
+\end{proof}
+%4
+\section{}
+
+Расстоянием Кульбака - Лейблера между между $p,q \in \mathbb{R}^n_{++}$ называется:
+ $$
+ D(p,q) = \sum\limits_{i=1}^n (p_i \log(p_i/q_i) - p_i + q_i)
+ $$
+ Докажите, что $D(p,q) \geq 0 \forall p,q \in \mathbb{R}^n_{++}$ и $D(p,q) = 0 \leftrightarrow p = q$  
+ Подсказка:  $$
+ D(p,q) = f(p) - f(q) - \nabla f(q)^T(p-q), \;\;\;\; f(p) = \sum\limits_{i=1}^n p_i \log p_i
+ $$
+
+
+\begin{proof}
+
+\begin{equation}\label{eq_plogp}
+f(p) = \sum\limits_{i=1}^n p_i \log p_i
+\end{equation}
+$$\fr{\p f}{\p x_k} = 1 + \log p_k$$
+$$\fr{\p^2 f}{\p x_k^2} = \dfr{1}{p_k} > 0 \quad \forall p \in \bb R^n_{++}$$
+
+$\Rightarrow f(p)$ - строго выпуклая функция.
+
+\begin{equation}\label{eq_pq}
+\Rightarrow f(p) > f(q) + \nabla f(q)^T(p - q ) \quad \forall p,q \in \bb R^n_{++}: p \neq q \quad \text{ критерий 1-го порядка}
+\end{equation}
+
+$$\sum\limits_{i=1}^n p_i \log p_i > \sum\limits_{i=1}^n q_i \log q_i + \sum\limits_{i=1}^n (1 + \log q_i)(p_i - q_i) =  \sum\limits_{i=1}^n \lt(p_i\log q_i + p_i - q_i\rt)$$
+$$\sum\limits_{i=1}^n p_i \log p_i - \sum\limits_{i=1}^n \lt(p_i\log q_i - p_i + q_i\rt) > 0$$
+$$\sum\limits_{i=1}^n\lt( p_i \log (p_i/q_i) - p_i + q_i\rt) > 0$$
+$$\Rightarrow D(p, q) > 0 , p\neq q$$
+
+Так как $D(p, q) = f(p) - f(q) - \nabla f(q)^T(p - q) \Leftrightarrow D(p, q) = 0 \text{ при } p = q $  
+
+	
+	
+\end{proof}
+
+%5
+\section{}
+
+Пусть $x$ - действительнозначная переменная, принимающая конечный набор значений $a_1 < a_2 < \ldots < a_n$ с вероятностями $\mathbb{P}(x = a_i) = p_i$. Оцените выпуклость и вогнутость следующих функций от $p$ на множестве $\left\{p \mid \sum\limits_{i=1}^n p_i = 1, p_i \ge 0 \right\}$  
+
+1. $\mathbb{E}x$
+
+2. $\mathbb{P}\{x \ge \alpha\}$
+
+3. $\mathbb{P}\{\alpha \le x \le \beta\}$
+
+4. $\sum\limits_{i=1}^n p_i \log p_i$
+
+5. $\mathbb{V}x = \mathbb{E}(x - \mathbb{E}x)^2$
+
+6. $\mathbf{quartile}(x) = {\operatorname{inf}}\left\{ \beta \mid \mathbb{P}\{x \le \beta\} \ge 0.25 \right\}$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\begin{enumerate}
+\item 
+$\bb Ex = p_1a_1 + \dots + p_na_n - $ неотрицательная комбинация константных функций $a_i$
+
+$\Rightarrow \bb Ex -$ выпукла и вогнута.
+
+\item 	
+Пусть $k  = min\{i \mid a_i \ge \al\}$. Тогда $\bb P(x \ge \al) = \sum \limits_{i = k}^n p_i.$ - линейная функция от переменной $\bf p \Rightarrow$ выпукла и вогнута (по критерию 2-го порядка, так как $f''(p) = 0$).
+
+\item 
+Пусть $k  = min\{i \mid a_i \ge \al\}$ и $m = max\{i\mid a_i \le \beta\}$. 
+
+Тогда $\mathbb{P}\{\alpha \le x \le \beta\} = \sum \limits_{i = k}^m p_i$ - линейная функция от переменной $\bf p \Rightarrow$ выпукла и вогнута.
+
+\item В предыдущей задаче \eqref{eq_plogp} было показано, что $\sum\limits_{i=1}^n p_i \log p_i$ - строго выпуклая.
+
+$\Rightarrow$ не является вогнутой.
+\item $\mathbb{V}x = \mathbb{E}(x - \mathbb{E}x)^2 = \bb E$
+
+\item $$\mathbf{quartile}(x) = {\opn{inf}}\left\{ \beta \mid \mathbb{P}\{x \le \beta\} \ge 0.25 \right\}$$ $$= {\opn{inf}}\lt\{ \beta \mid 1 - \mathbb{P}\{\beta < x \} \ge 0.25 \rt\}$$ $$= {\opn{inf}}\lt\{ \beta \mid \mathbb{P}\{\beta < x \} \le 0.75 \rt\}$$
+
+
+Заметим, что функция $f(x) = {\bf quartile}(x)$ не является непрерывной (принимает значения из дискретного множества $\{a_1,\dots, a_n\}$). 
+
+По теореме 3.1.5 из Жадана (стр 100): если $f(x)$ выпуклая функция на выпуклом множестве $X\subseteq \bb R^n$, то  $f(x)$ непрерывна $\forall x \in ri(X)$.
+
+Значит $f(x) = {\bf quartile}(x)$ не является выпуклой. Заметим,что $-f(x)$ тоже не является выпуклой, значит $f(x)$ не является вогнутой.
+
+\end{enumerate}
+
+\end{document} % конец документа
+
