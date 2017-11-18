@@ -80,6 +80,7 @@
 \newcommand{\La}{\Lambda}
 \newcommand{\la}{\lambda}
 \newcommand{\opn}{\operatorname}
+\newcommand{\vp}{\varphi}
 
 
 \pagestyle{fancy}
@@ -222,10 +223,31 @@ $
 	\item $p = 2$
 	
 	$f(x) = \|x\|_2 = \sqrt{\sum\limits_{i = 0}^{n} |x_i|^2 } = \sqrt{x_1^2 + \dots + x_n^2 }$
+\begin{itemize}	
+	\item $x \neq 0$
+
+	$\forall x \neq 0 \rightarrow f(x)$ является дифференцируемой функцией $$\Rightarrow \p f(x) = \nabla f(x) = \dfr{x}{\|x\|_2}$$ 
 	
-	$\forall x \neq 0 \rightarrow f(x)$ является дифференцируемой функцией $\Rightarrow \p f(x) = \nabla f(x) = \dfr{x}{\|x\|}$ 
+	\item $x = 0$
 	
+	По опр:
+	$$f(x)\ge f(x_0) + \langle g, x - x_0\rangle$$
+	$$\|x\|_2\ge \langle g, x\rangle$$
+	$$\lt\langle g, \fr{x}{\|x\|_2}\rt\rangle \le 1 \quad \forall x\in \bb R^n$$
+	$$\lt\langle g, e\rt\rangle \le 1$$
+	
+	$$\lt\langle g, e\rt\rangle \le \|g\|_2\|e\|_2 = \|g\|_2$$
+	
+	$$\p f = \lt\{g\mid \|g\|_2 \le 1 \quad \forall x\in \bb R^n \rt\}$$
+	
+\end{itemize}
 	\item $p = \infty$
+	
+	Аналогично можно получить:
+	
+	$$\lt\langle g, \fr{x}{\|x\|_{\infty}}\rt\rangle \le 1 \quad \forall x\in \bb R^n$$
+	
+	$$\p f = \lt\{g\mid \|g\|_{\infty} \le 1 \quad \forall x\in \bb R^n \rt\}$$
 \end{itemize}
 
 
@@ -233,9 +255,89 @@ $
 
 Найти $\partial f(x)$, если $f(x) = \|Ax - b\|_1^2$
 
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\begin{itemize}
+	
+\item $Ax \neq b$
+
+Пусть $A \in \bb R^{n\times m}, x \in \bb R^m$
+
+$\forall x: Ax \neq b \rightarrow$ $f$ является дифференцируемой $\Rightarrow\p f = \nabla f$.
+
+Рассмотрим $f$ как $f(\vp(\psi(g)))$, где 
+
+$f(\vp) = \vp^2$
+
+$\vp(\psi) = \psi^2,$
+ 
+$\psi(g) = \|g\|_1,$ 
+
+$g(x) = Ax-b$
+
+Тогда по правилу нахождения субдифференциала сложной функции:
+$$\p f = \fr{\p f}{\p \vp}\fr{\p \vp}{\p \psi}\fr{\p \psi}{\p g}\p g$$
+
+Вспомогательная задача: $\nabla f$, где $f(x) = \|x\|_1 = \sum\limits_{i = 0}^{n}|x_i|$
+
+$$\fr{\p f}{\p x_k} = \sgn(x_k) $$
+
+$$\nabla f = \begin{pmatrix}
+\sgn (x_1)\\
+\vdots\\
+\sgn(x_n)
+\end{pmatrix} $$
+
+Также заметим, что $\|Ax-b\|_1 = \sum\limits_{i = 0}^{n}\Big|\sum\limits_{j = 0}^{m}a_{ij}x_j - b_i\Big|$
+
+Тогда $$\p f = 2\|Ax-b\|_1A^{T}
+\begin{pmatrix}
+\sgn\lt(\sum\limits_{j = 0}^{m}a_{1j}x_j - b_1\rt)\\
+\vdots\\
+\sgn\lt(\sum\limits_{j = 0}^{m}a_{nj}x_j - b_n\rt)
+\end{pmatrix}$$
+
+\item $Ax = b$
+
+По опр:
+$$f(x)\ge f(x_0) + \langle g, x - x_0\rangle$$
+
+$x_0 = (A^TA)^{-1}A^Tb$
+
+$$\|Ax - b\|_1^2 \ge \langle g, x - (A^TA)^{-1}A^Tb \rangle$$
+
+\end{itemize}
 \section{}
 
 Найти $\partial f(x)$, если $f(x) = e^{\|x\|}$
+
+Рассмотрим $\|x\|_2$.
+
+Аналогично.
+\begin{itemize}
+	\item $x \neq 0$
+	
+	Пусть 
+	
+	$f(g) = e^g$
+	
+	$g(x) = \|x\|_2$
+	
+	$$\p f = \fr{\p f}{\p g}\p g$$
+	
+	$$\p f = e^{\|x\|_2}\fr{x}{\|x\|_2}$$
+	
+	
+	\item $x = 0$
+	
+	По опр:
+	$$f(x)\ge f(x_0) + \langle g, x - x_0\rangle$$
+	$$e^{\|x\|_2} - 1\ge \langle g, x\rangle$$
+	$$\p f = \lt\{g\Big|  \lt\langle g, \fr{x}{e^{\|x\|_2} - 1}\rt\rangle \le 1 \quad \forall x\in \bb R^n \rt\}$$
+	
+\end{itemize}
 
 \end{document} % конец документа
 

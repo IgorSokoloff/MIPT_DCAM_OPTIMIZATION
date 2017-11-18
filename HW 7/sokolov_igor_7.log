@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.5.22)  12 NOV 2017 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.5.22)  14 NOV 2017 16:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -987,24 +987,24 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 (./sokolov_igor_7.aux)
 \openout1 = `sokolov_igor_7.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1041,7 +1041,7 @@ LaTeX Font Info:    ... okay on input line 97.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 97.
+Package hyperref Info: Link coloring OFF on input line 98.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1050,9 +1050,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 97.
-LaTeX Info: Redefining \pageref on input line 97.
-LaTeX Info: Redefining \nameref on input line 97.
+LaTeX Info: Redefining \ref on input line 98.
+LaTeX Info: Redefining \pageref on input line 98.
+LaTeX Info: Redefining \nameref on input line 98.
 
 (./sokolov_igor_7.out) (./sokolov_igor_7.out)
 \@outlinefile=\write4
@@ -1060,7 +1060,7 @@ LaTeX Info: Redefining \nameref on input line 97.
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 97.
+(lastpage)             ! on input line 98.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1090,108 +1090,125 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Try loading font information for U+msa on input line 100.
+LaTeX Font Info:    Try loading font information for U+msa on input line 101.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 100.
+LaTeX Font Info:    Try loading font information for U+msb on input line 101.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 100.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 101.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 101.
+(babel)             in language append on input line 102.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 101.
+(babel)             in language append on input line 102.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 130.
+(babel)             in language append on input line 131.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 130.
+(babel)             in language append on input line 131.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 156.
+(babel)             in language append on input line 157.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 156.
+(babel)             in language append on input line 157.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 156.
+(babel)             in language append on input line 157.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 156.
+(babel)             in language append on input line 157.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 <image1.pdf, id=47, 486.81876pt x 251.94125pt>
 File: image1.pdf Graphic file (type pdf)
  <use image1.pdf>
-Package pdftex.def Info: image1.pdf used on input line 158.
+Package pdftex.def Info: image1.pdf used on input line 159.
 (pdftex.def)             Requested size: 483.69687pt x 250.326pt.
 
-Overfull \hbox (17.6207pt too wide) in paragraph at lines 158--159
+Overfull \hbox (17.6207pt too wide) in paragraph at lines 159--160
 [][] 
  []
 
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 177.
+(babel)             in language append on input line 178.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 177.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 186.
+(babel)             in language append on input line 178.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 187.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 186.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 187.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 192.
+(babel)             in language append on input line 193.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 192.
+(babel)             in language append on input line 193.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 192.
+(babel)             in language append on input line 193.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 192.
+(babel)             in language append on input line 193.
  [2 <./image1.pdf>]
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 232.
+(babel)             in language append on input line 254.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 232.
+(babel)             in language append on input line 254.
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 236.
+(babel)             in language append on input line 259.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 236.
+(babel)             in language append on input line 259.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 259.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 259.
 
-
-AED: lastpage setting LastPage
-Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 240.
-Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 240.
-Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 240.
-Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 240.
 [3]
 Package babel Info: Redefining russian shorthand "|
-(babel)             in language append on input line 240.
+(babel)             in language append on input line 312.
 Package babel Info: Redefining russian shorthand "~
-(babel)             in language append on input line 240.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 240.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 240.
+(babel)             in language append on input line 312.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 316.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 316.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 316.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 316.
+ [4] 
+AED: lastpage setting LastPage
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 342.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 342.
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 342.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 342.
+[5]
+Package babel Info: Redefining russian shorthand "|
+(babel)             in language append on input line 342.
+Package babel Info: Redefining russian shorthand "~
+(babel)             in language append on input line 342.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 342.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
  (./sokolov_igor_7.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 240.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 240.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
 Package rerunfilecheck Info: File `sokolov_igor_7.out' has not changed.
 (rerunfilecheck)             Checksum: 0C445C11D55D2836D41884682AE0087C;175.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 240.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 342.
  ) 
 Here is how much of TeX's memory you used:
- 12726 strings out of 493029
- 175317 string characters out of 6136234
- 258870 words of memory out of 5000000
- 15986 multiletter control sequences out of 15000+600000
+ 12729 strings out of 493029
+ 175331 string characters out of 6136234
+ 259873 words of memory out of 5000000
+ 15987 multiletter control sequences out of 15000+600000
  23977 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,13n,43p,311b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1212,10 +1229,10 @@ ic/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/publi
 c/cm-super/sfti1200.pfb>
-Output written on sokolov_igor_7.pdf (3 pages, 206732 bytes).
+Output written on sokolov_igor_7.pdf (5 pages, 217225 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
+ 132 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
