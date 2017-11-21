@@ -1,0 +1,300 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{comment}
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Интерлиньяж
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soulutf8} % Модификаторы начертания
+
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\al}{\alpha}
+\newcommand{\p}{\partial}
+\newcommand{\D}{\Delta}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bb}{\mathbb}
+\newcommand{\wt}{\widetilde}
+\newcommand{\La}{\Lambda}
+\newcommand{\la}{\lambda}
+\newcommand{\opn}{\operatorname}
+\newcommand{\vp}{\varphi}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\pagestyle{plain} % нумерация вкл.
+
+\rhead{\today}
+\lhead{Соколов Игорь, группа 573}
+
+%%% Заголовок
+\author{Соколов Игорь, группа 573}
+\title{ДЗ 8 по Методам Оптимизации. \newline Сопряженная функция}
+\date{\today}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+\section{}
+Найти $f^*(y)$, если $f(x) = -\dfrac{1}{x}, \;\; x\in \mathbb{R}_{++}$
+
+\textbf{Решение:}
+
+\begin{enumerate}
+	\item $$f^*(y) = \sup\limits_{x \in \mathbf{dom} \; f} \left( \langle y,x\rangle - f(x)\right)  = \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$$
+	
+	$$f(x, y) = xy +\fr{1}{x}$$
+	
+	\item  Поиск тех значений $y$, при которых $ \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$ конечен. Эти значения есть ${\bf dom}f^*$
+	
+	\begin{itemize}
+		\item $y > 0$
+		
+		$\Rightarrow f(x,y)$ не ограничена сверху при каждом фиксированном $y$ при $ x \in {\bf dom} f$.
+		
+		\item $y \le 0$
+		
+		$\sup\limits_{x \in \mathbf{dom} \; f(x,y)}$ ограничен сверху.
+		
+		$\Rightarrow {\bf dom}f^* = -\bb R_+$
+	\end{itemize}
+	\item Поиск $x^*$, при котором $f(x,y)$ достигает своего максимального значения как функция по $x$. $f^*(y) = f(x^*, y)$
+	
+	$$\fr{\p f(x, y)}{\p x} = y - \fr{1}{x^2} = 0$$
+	$$y = \fr{1}{x^2}$$
+	$$\Rightarrow x^* = \fr{1}{\sqrt{-y}}, \quad y\le 0$$
+	
+	Значит $f^*(y) = -\dfr{-y}{\sqrt{-y}} + \sqrt{-y} = -2\sqrt{y}$
+	
+\end{enumerate}
+
+\textbf{Ответ:}
+
+ $f^*(y) = -2\sqrt{y}$
+ 
+ ${\bf dom}f^* = \bb -R_+$
+
+\section{}
+Найти $f^*(y)$, если $f(x) = -0,5 - \log x, \;\; x>0$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\begin{enumerate}
+	\item $$f^*(y) = \sup\limits_{x \in \mathbf{dom} \; f} \left( \langle y,x\rangle - f(x)\right)  = \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$$
+	
+	$$f(x, y) = xy + 0.5 + \log x$$
+	
+	\item  Поиск тех значений $y$, при которых $ \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$ конечен. Эти значения есть ${\bf dom}f^*$
+	
+	\begin{itemize}
+		\item $y \ge 0$
+		
+		$\Rightarrow f(x,y)$ не ограничена сверху при каждом фиксированном $y$ при $ x \in {\bf dom} f$.
+		
+		\item $y < 0$
+		
+		$\sup\limits_{x \in \mathbf{dom} \; f}f(x,y)$ ограничен сверху.
+		
+		$\Rightarrow {\bf dom}f^* = -\bb R_+$
+	\end{itemize}
+	\item Поиск $x^*$, при котором $f(x,y)$ достигает своего максимального значения как функция по $x$. $f^*(y) = f(x^*, y)$
+	
+	$$\fr{\p f(x, y)}{\p x} = y + \fr{1}{x} = 0$$
+	$$y = -\fr{1}{x}$$
+	$$\Rightarrow x^* = -\fr{1}{y}, \quad y < 0$$
+	
+	Значит $f^*(y) = -\fr{y}{y} +  0.5 + \log \lt(-\fr{1}{y}\rt) = -0.5 - \log(-y)$
+	
+\end{enumerate}
+\textbf{Ответ:}
+
+$f^*(y) =-0.5 - \log(-y)$
+
+${\bf dom}f^* = -\bb R_+$
+
+
+
+\section{}
+Найти $f^*(y)$, если $f(x) = \log \left( \sum\limits_{i=1}^n e^{x_i} \right)$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\begin{enumerate}
+	\item $$f^*(y) = \sup\limits_{x \in \mathbf{dom} \; f} \left( \langle y,x\rangle - f(x)\right)  = \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$$
+	
+	$$f(x, y) = xy - \log \lt( \sum\limits_{i=1}^n e^{x_i} \rt)$$
+	
+	\item  Поиск тех значений $y$, при которых $ \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$ конечен. Эти значения есть ${\bf dom}f^*$
+	
+	\begin{itemize}
+		\item $y \prec 0$
+		
+		Покажем, что этот случай не подходит.
+		
+		Пусть $y_k \le 0$, 
+		$
+		\begin{cases}
+		x_k = -t, t > 0\\
+		x_i = 0, i\neq k
+		\end{cases}
+		$
+		
+		Тогда $f(x, y) =  x_ky_k -\log \lt( e^{x_k} + (n-1)\rt) =  -ty_k - \log \lt( e^{-t} + (n-1)\rt) \rightarrow +\infty \text{ при } t\rightarrow +\infty$
+		
+		$\Rightarrow f(x,y)$ не ограничена сверху при каждом фиксированном $y$ при $ x \in {\bf dom} f$.
+		
+		\item $y \succeq 0$
+		Покажем, что ${\bf 1}^Ty = 1 $
+		Пусть это не так, тогда возможный два случая:
+		\begin{itemize}
+		\item ${\bf 1}^Ty > 1$
+		
+		Пусть $x = t{\bf 1}$.
+		
+		Тогда $f(x,y) = t{\bf 1}^Ty - \lt( \sum\limits_{i=1}^n e^t \rt) = t{\bf 1}^Ty - t - \log n = t({\bf 1}^Ty - 1) - \log n \rightarrow +\infty \text{ при } t\rightarrow +\infty$
+		
+		$\Rightarrow f(x,y)$ не ограничена сверху при каждом фиксированном $y$ при $ x \in {\bf dom} f$.
+		
+		\item ${\bf 1}^Ty < 1$
+		
+		Аналогично при $x = t{\bf 1}$ получаем $f(x, y) = t({\bf 1}^Ty - 1) - \log n = -t(1 - {\bf 1}^Ty) - \log n \rightarrow +\infty \text{ при } t\rightarrow -\infty$
+		
+		$\Rightarrow f(x,y)$ не ограничена сверху при каждом фиксированном $y$ при $ x \in {\bf dom} f$.
+		
+		\end{itemize}
+	
+	В итоге получаем, что ${\bf dom}f^* = \bb R^n_+$
+	\end{itemize}
+	\item Поиск $x^*$, при котором $f(x,y)$ достигает своего максимального значения как функция по $x$. $f^*(y) = f(x^*, y)$
+	
+	$$\fr{\p f(x,k)}{\p x_k} = y_k - \fr{e^{x_k}}{\sum\limits_{i=1}^n e^{x_i}} = 0$$
+	$$y_k = \fr{e^{x_k}}{\sum\limits_{i=1}^n e^{x_i}}$$
+	$$x_k^* = \log\lt(y_k\sum\limits_{i=1}^n e^{x_i}\rt)$$
+	
+	Значит
+	
+	\begin{multline}
+	f^*(y) = \sum\limits_{k=1}^n y_k \log\lt(y_k\sum\limits_{i=1}^n e^{x_i}\rt) - \log \lt( \sum\limits_{i=1}^n e^{x_i} \rt) =\\= \sum\limits_{k=1}^n y_k\log y_k +\log \lt(\sum\limits_{i=1}^n e^{x_i} \rt) \sum\limits_{k=1}^n y_k -  \log \lt( \sum\limits_{i=1}^n e^{x_i} \rt) = \sum\limits_{k=1}^n y_k\log y_k
+	\end{multline}
+	
+	так как $\sum\limits_{k=1}^n y_k = 1$
+
+	Полагаем, что $0\log0 = 0$
+\end{enumerate}
+\textbf{Ответ:}
+
+$f^*(y) = \sum\limits_{k=1}^n y_k\log y_k, \quad f(\vec{0}) = 0$
+
+${\bf dom}f^* = \bb R^n_+, {\bf 1}^Ty = 1 $
+
+\section{}
+Найти $f^*(y)$, если $f(x) = - (a^2 - x^2)^{1/2}, \;\;\; |x| \le a, \;\;\; a>0$
+
+\vspace{\baselineskip}
+
+\textbf{Решение:}
+
+\begin{enumerate}
+	\item $$f^*(y) = \sup\limits_{x \in \mathbf{dom} \; f} \left( \langle y,x\rangle - f(x)\right)  = \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$$
+	
+	$$f(x, y) = xy + (a^2 - x^2)^{1/2}$$
+	
+	\item  Поиск тех значений $y$, при которых $ \sup\limits_{x \in \mathbf{dom} \; f} f(x,y)$ конечен. Эти значения есть ${\bf dom}f^*$
+	
+	Нетрудно заметить, что $\forall y\in \bb R \quad \forall x \in [-a;a] \rightarrow f(x,y) $ ограничена.
+	
+	$\Rightarrow {\bf dom}f^* = \bb R$
+
+	\item Поиск $x^*$, при котором $f(x,y)$ достигает своего максимального значения как функция по $x$. $f^*(y) = f(x^*, y)$
+	
+	$$\fr{\p f(x, y)}{\p x} = y + \fr{-2x}{2(a^2 -x^2)^{1/2}} = 0$$
+	$$y = \fr{x}{(a^2 -x^2)^{1/2}}$$
+	$$y^2(a^2 -x^2) = x^2$$
+	$$x^2 = \fr{y^2a^2}{y^2+1}$$
+	
+	$x_1 = \dfr{ya}{\sqrt{y^2+1}}$ - максимум достигается для таких $x$.
+	
+	$x_2 = -\dfr{ya}{\sqrt{y^2+1}}$
+	
+	$$x^* = \dfr{ya}{\sqrt{y^2+1}}$$
+	
+	Значит $$f^*(y) = \fr{y^2a}{\sqrt{y^2+1}} + \lt(a^2 - \fr{y^2a^2}{y^2+1}\rt)^{1/2} = \fr{y^2a}{\sqrt{y^2+1}} + a\lt(\fr{1}{y^2+1} \rt) = a\sqrt{y^2 + 1}$$
+	
+\end{enumerate}
+\textbf{Ответ:}
+
+$f^*(y) = a\sqrt{y^2 + 1}$
+
+${\bf dom}f^* = \bb R$
+
+
+\end{document} % конец документа
+
