@@ -1,0 +1,25 @@
+\documentclass[]{article}
+
+%opening
+\title{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+
+Возьмем $C_k = \frac{k^k}{(k+1)^{k+1}} = \frac{1}{k}\left(\frac{k}{k+1}\right)^{k+1} \rightarrow 0$, при $k \rightarrow \infty$
+
+Определение метода, сходящегося сверхлинейно:
+
+$||x_{k+1} - x_*|| \le C_k||x_{k} - x_*||$, $C_k \rightarrow 0$ при $k \rightarrow \infty$
+
+В нашем случае $x_* = \lim\limits_{k \to \infty} \frac{1}{k^k} = 0$
+
+$\Rightarrow \frac{1}{(k+1)^{k+1}} \le C_k \frac{1}{k^k} = \frac{k^k}{(k+1)^{k+1}} \frac{1}{k^k} = \frac{1}{(k+1)^{k+1}}$
+
+Получили:
+$\frac{1}{(k+1)^{k+1}} \le \frac{1}{(k+1)^{k+1}}$
+
+\end{document}

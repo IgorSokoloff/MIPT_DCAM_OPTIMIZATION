@@ -1,0 +1,183 @@
+% !TeX spellcheck = <none>
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{comment}
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=25mm}
+\geometry{bottom=35mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\usepackage{setspace} % Интерлиньяж
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+\usepackage{soulutf8} % Модификаторы начертания
+
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newenvironment{solution}
+{\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}{\end{proof}}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\al}{\alpha}
+\newcommand{\p}{\partial}
+\newcommand{\D}{\Delta}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bb}{\mathbb}
+\newcommand{\wt}{\widetilde}
+\newcommand{\La}{\Lambda}
+\newcommand{\la}{\lambda}
+\newcommand{\opn}{\operatorname}
+\newcommand{\vp}{\varphi}
+\newcommand{\rw}{\rightarrow}
+\newcommand{\iy}{\infty}
+\newcommand{\Rw}{\Rightarrow}
+
+\pagestyle{fancy}
+\fancyhf{}
+\pagestyle{plain} % нумерация вкл.
+
+\rhead{\today}
+\lhead{Соколов Игорь, группа 573}
+
+%%% Заголовок
+\author{Соколов Игорь, группа 573}
+\title{ДЗ 1 по Методам Оптимизации.}
+\date{\today}
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle
+
+\begin{enumerate}
+\item $r_k = \lt\{\lt(0.707\rt)^k\rt\}_{k=1}^{\infty}$
+\begin{solution}
+	Тест корней:
+	$\al =  \lim\limits_{k \rw \infty}\sup r_k^{1/k}$
+	
+	$\al = \lim\limits_{k \rw \infty}\sup \lt(0.707^k\rt)^{1/k} = 0.707$
+	
+	$\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет линейную сходимость с константной $\al = 0.707$
+	
+\end{solution}
+
+\item $r_k =
+ \lt\{\lt(0.707\rt)^{2^k}\rt\}_{k=1}^{\infty}$
+\begin{solution}
+	Тест отношений:
+	$\al = \lim\limits_{k \rw \infty} \dfrac{r_{k+1}}{r_k}$
+	
+	\begin{multline}
+		\lim\limits_{k \rw \infty} \dfrac{\lt(0.707\rt)^{2^{k+1}}}{\lt(0.707\rt)^{2^k}} =\lim\limits_{k \rw \infty} \dfr{\exp\ln\lt(0.707\rt)^{2^{k+1}}}{\exp\ln\lt(0.707\rt)^{2^{k}}} =\lim\limits_{k \rw \infty} \dfr{\exp(2^{k+1}\ln(0.707))}{\exp(2^{k}\ln(0.707))} =\\= \lim\limits_{k \rw \infty} \exp (2^k \ln(0.707)) = 0
+	\end{multline}
+	
+	$\ln 0.707 < 0$ 
+	
+	$\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет сверхлинейную сходимость.
+	
+\end{solution}
+
+\item
+ $r_k = \lt\{\dfr{1}{k^2}\rt\}_{k=1}^{\infty}$
+ \begin{solution}
+ Тест отношений:
+ $\lim\limits_{k \rw \infty} \dfrac{k^2}{(k+1)^2} = 1$
+ 
+ $\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет сублинейную сходимость.
+ \end{solution}
+
+\item $r_k = \lt\{\dfr{1}{k!}\rt\}_{k=1}^{\infty}$
+\begin{solution}
+Тест отношений:
+$\lim\limits_{k \rw \infty} \dfrac{k!}{(k+1)!} = \lim\limits_{k \rw \infty}\dfr{1}{k+1} = 0$
+
+ $\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет сверхлинейную сходимость.
+\end{solution}
+\item 
+$
+\begin{cases}
+\dfrac{1}{k},& \text{if $k$ is even}\\
+\dfrac{1}{k^2},& \text{if $k$ is odd}
+\end{cases}, 
+$
+\begin{solution}
+	Тест отношений:
+	$\lim\limits_{k \rw \infty}\inf \dfr{r_{k+1}}{r_k} = \lim\limits_{k \rw \infty} \dfr{k^2}{(k+1)^2} = 1$
+	
+	$\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет сублинейную сходимость.
+	
+\end{solution}
+\item 
+$
+\begin{cases}
+\dfrac{1}{k^k},& \text{if $k$ is even}\\
+\dfrac{1}{k^{2k}},& \text{if $k$ is odd}
+\end{cases}, 
+$
+\begin{solution}
+Тест корней: 	
+$\lim\limits_{k \rw \infty}\sup r_k^{1/k} = \lim\limits_{k \rw \infty}\dfr{1}{k} = 0	$
+
+ $\Rw \left\{ r_k\right\}_{k=1}^{\iy}$ имеет сверхлинейную сходимость.
+\end{solution}
+
+\end{enumerate}
+
+
+\end{document} % конец документа
+
