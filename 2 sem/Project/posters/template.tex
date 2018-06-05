@@ -18,6 +18,8 @@
 % 'psnup -w85cm -h119cm -f poster_from_dvips.ps poster_in_landscape.ps'
 
 \documentclass[a0]{a0poster}
+
+
 % You might find the 'draft' option to a0 poster useful if you have
 % lots of graphics, because they can take some time to process and
 % display. (\documentclass[a0,draft]{a0poster})
@@ -36,6 +38,27 @@
 \usepackage{fleqn,psfrag,wrapfig,tikz}
 
 \usepackage[papersize={38in,28in}]{geometry}
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{ upgreek }
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+\usepackage{graphicx,array}
+
+%\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+
+\usepackage{chngcntr}
+\usepackage{hyperref}
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma}
+
 
 % Graphics to include graphics. Times is nice on posters, but you
 % might want to switch it off and go for CMR fonts.
@@ -62,6 +85,20 @@
 \renewcommand{\labelitemii}{\textcolor{bluegray}{--}}
 
 \setlength{\labelsep}{0.5em}
+
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\al}{\alpha}
+\newcommand{\p}{\partial}
+\newcommand{\D}{\Delta}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bb}{\mathbb}
+\newcommand{\wt}{\widetilde}
+\newcommand{\La}{\Lambda}
+\newcommand{\la}{\lambda}
+\newcommand{\opn}{\operatorname}
 
 
 % see documentation for a0poster class for the size options here
@@ -110,7 +147,7 @@
 % Watch out for hyphenation in titles - LaTeX will do it
 % but it looks awful.
 \begin{textblock}{23}(0,0)
-\Title{Benchmarking of quasi-Newtonian methods}
+\Title{Benchmarking of quasi-Newton methods}
 \end{textblock}
 
 \begin{textblock}{23}(0,0.6)
@@ -145,26 +182,209 @@ Igor Sokolov
 
 \hrule\medskip
 \Head{Introduction}\\
+The most well-known minimization technique for unconstrained problems is Newton’s Method.
+In each iteration, the step update is $x_{k+1} = x_k - \lt(\nabla^2f_k\rt)\nabla2f_k$.
+Ноwever, the inverse of the Hessian has to be calculated in every
+iteration so it takes $O\lt(n^3\rt)$. Moreover, in some applications, the second derivatives
+may be unavailable. One fix to the problem is to use a finite difference approximation to
+the Hessian.
 
+We consider solving the nonlinear unconstrained minimization problem
+
+$$\min f(x), x \in \bb{R}$$
+
+Lets consider the following quadratic model of the objective function
+
+$m_k(p) = f_k + \nabla f_k^Tp + \fr{1}{2}B_kp$, 
+where $B_k = B_k^T, B_k \succ 0$ is an $n \times n$
+
+The minimizer $p_k$ of this convex quadratic model
+$p_k =  - B_k^{-1}\nabla f_k$
+is used as the search direction, and the new iterate is 
+
+$x_{k+1} = xk + \al p_k$, let $s_k = \al p_k$
+
+
+The general structure of quasi-Newton method can be summarized as follows
+
+\begin{itemize}
+\item Given $x0$, $B_0$(or $H_0$), $k \rightarrow 0;$
+
+\item \textbf{For} $k = 0, 1, 2, \dots$
+
+\quad Evaluate gradient $g_k$.
+
+\quad Calculate $s_k$ by line search or trust region methods.
+
+\quad $x_{k+1} \leftarrow x_k + s_k$
+
+\quad $y_k \leftarrow  g_{k+1} - g_k$
+
+\quad Update $B_{k+1}$ or $H_{k+1}$ according to the quasi-Newton formulas.
+\textbf{End(for)}
+
+\end{itemize}
+Basic requirement in each iteration, i.e.,
+$B_k s_k = y_k$ (or $H_k y_k = s_k$)
+
+\hrule\medskip
+\Head{ Quasi-Newton Formulas for Optimization}
+\begin{flushleft}
+	\begin{tabular}{ p{10cm} p{16cm} }
+		
+		\multicolumn{2}{l}{\textbf{BFGS}} \\
+		
+		$\min||H-H_k||$, \newline s.t $H=H^T$, $Hy_k=s_k$ & $H_{k+1} =(I-\rho s_k y_k^T)H_k(I-\rho y_k s_k ^T) + \rho s_k s_k^T$  
+															\newline where $\rho = \fr{1}{y_k^Ts_k}$
+															\newline $B_{k+1} = B_k - \fr{B_ks_ks_k^TB_k}{s_k^TB_ks_k} + \fr{y_ky_k^T}{y_k^Ts_k}$\\ 
+		\multicolumn{2}{l}{\textbf{DFP}} \\
+		$\min||B-B_k||$, \newline s.t $B=B^T$, $Bs_k=y_k$& $B_{k+1} =(I-\gamma y_k s_k^T)H_k(I-\gamma  s_k y_k ^T) + \gamma y_k y_k^T$	\newline where $\gamma = \fr{1}{y_k^Ts_k}$
+		\newline $H_{k+1} = H_k - \fr{H_k y_k y_k^TH_k}{y_k^T H_k y_k} + \fr{s_k s_k^T}{y_k^Ts_k}$\\
+		\multicolumn{2}{l}{\textbf{PSB}} \\
+		$\min||B-B_k||$, \newline s.t $\lt(B - B_k\rt)=\lt(B - B_k\rt)^T$, \newline$Bs_k=y_k$&
+		$B_{k+1} = B_k - \fr{(y_k - B_ks_k)s_k^T + s_k(y_k - B_ks_k)^T}{s_k^Ts_k} + \fr{s_k(y_k - B_ks_k) s_k s_k^T}{(s_k^Ts_k)^2}$
+		
+		$H_{k+1} = H_k - \fr{(s_k - H_ky_k)y_k^T + y_k(s_k - H_ky_k)^T}{y_k^Ty_k} + \fr{s_k(s_k - H_ky_k) y_k y_k^T}{(y_k^Ty_k)^2}$\\ 
+		\multicolumn{2}{l}{\textbf{SR1}} \\
+		$B_{k+1} = B_k + \sigma\nu\nu^T$,\newline s.t $B_{k+1}s_k = y_k$&
+		$B_{k+1} = B_k + \fr{(y_k - B_ks_k)(y_k - B_ks_k)^T}{(y_k - B_ks_k)^Ts_k}$,\newline
+		$H_{k+1} = H_k + \fr{(s_k - H_ky_k)(s_k - H_k y_k)^T}{(s_k - H_ky_k)^Ty_k}$
+	\end{tabular}
+\end{flushleft}
+\end{textblock}
+
+\begin{textblock}{7.0}(8,1.5)
+\begin{flushleft}
+\begin{tabular}{ p{3cm} |p{12cm}| p{12cm} }
+	Method & Advantages & Disadvantages\\
+	\hline
+	
+	BFGS & 
+	\begin{itemize}
+	\item $H_0\succ 0$ hence if $H_0\succ 0$
+	\item self correcting property if Wolfe chosen
+	\item superlinear convergence
+	\end{itemize}
+	&
+	\begin{itemize}
+		\item $y_k^Ts_k \approx 0$ formula produce bad results
+		\item sensitive to round-off error
+		\item sensitive bad line search
+		\item can get stuck in saddle point
+	\end{itemize}\\
+    \hline
+    
+
+    DFP &
+    \begin{itemize}
+    	\item  can be highly inefficient at correcting
+    	large eigenvalues of matrices
+    \end{itemize}
+    &
+    \begin{itemize}
+    	\item sensitive to round-off error
+    	\item sensitive bad line search
+    	\item can get stuck in saddle point
+    \end{itemize}\\
+	\hline
+	PSB &
+	\begin{itemize}
+		\item superlinear convergence
+	\end{itemize}
+	&
+	\begin{itemize}
+		\item sensitive to round-off error
+		\item can get stuck in saddle point
+	\end{itemize}\\
+\hline
+SR1 &
+\begin{itemize}
+	\item garantees to be $B_{k+1}\succ 0$ even if $s_k y_k > 0$ doesn't satisfied
+	\item very good approximations to the  Hessian matrices, often better than BFGS
+\end{itemize}
+&
+\begin{itemize}
+	\item sensitive to round-off error
+	\item can get stuck in saddle point
+\end{itemize}\\
+	
+\end{tabular}
+\end{flushleft}		
 \medskip
 \hrule\medskip
-\Head{ Quasi-Newton Formulas for Optimization}\\
-
+\Head{Line Search Vs. Trust Region}
+\begin{itemize}
+	\item Line search
+	
+	$f(x_k + \alpha_k p_k) \le f(x_k) + c_1\alpha_k\nabla_k^Tp_k$
+	
+	$|f(x_k + \alpha_k p_k)^Tp_k| \le c_2|\nabla f_k^Tp_k|$
+	
+	\item Trust region
+	
+	Both direction and step size find from solving
+	 
+	$\min_{p\in \bb{R}^n} m_k(p) = f_k + \nabla f_k^Tp + \fr{1}{2}B_kp \quad ||p||\le \Updelta_k$
+\end{itemize}
 \medskip
 \hrule\medskip
-\Head{Line Search Vs. Trust Region}\\
+\Head{Numerical Results}
+\begin{itemize}
+	\item All quasi-newton methods with two strategies (8 algorithms) were implemented in Python
+	\item 165 various $N-d (N \ge 2)$ strong benchmark problems
+	\item For each algorithm all problems were launched from random point of domain 50 times and results were averaged
+\end{itemize}
 
-\medskip
-\hrule\medskip
-\Head{Numerical Results}\\
+\begin{figure}
+	\
+	\includegraphics[width=.55\textwidth]{pic/NewFunction02.png}
+	\includegraphics[width=.55\textwidth]{pic/CrossInTray.png}%\hfill
+\end{figure}
+\end{textblock}
 
-\hrule\medskip
+\begin{textblock}{7.0}(16,1.5)
+%\begin{comment}
+%	\begin{figure}
+		
+%		\includegraphics[width=.55\textwidth]{pic/Deb02.png}%\hfill
+%		\includegraphics[width=.55\textwidth]{pic/NewFunction02.png}\\
+%		\includegraphics[width=.55\textwidth]{pic/PermFunction01.png}
+%		\includegraphics[width=.55\textwidth]{pic/CrossInTray.png}
+%	\end{figure}
+%\end{comment}
+\begin{figure}
+	\
+	\includegraphics[width=.55\textwidth]{pic/distr_line_search.pdf}
+	\includegraphics[width=.55\textwidth]{pic/distr_trust_region.pdf}%\hfill
+\end{figure}
+
+\begin{flushleft}
+	\begin{tabular}{ p{5cm} |p{3cm}| p{3cm}|p{3cm}|p{3cm}|p{3cm} }
+		Strategy	& BFGS & DFP & PSB & SR1 & Total\\
+		\hline
+		Line search & 0.2&   0.17  &0.1&0.1&15(0.09)\\
+		\hline
+		Trust region&0.18&0.16& 0.19&0.11&15(0.09)
+	\end{tabular}
+\end{flushleft}
+
+Performance evaluation:
+$n_s$ - number of solvers, $n_p$ -  number of problems,
+$t_{s,p}$ - time, $r_{s,p} = \fr{t_{s,p}}{\min\{t_{s,p}: s\in S\}}$ - performance profile function\\
+$\rho_s(\tau) = \fr{1}{n_p}size\{p:1\le p\le n_p, \log(r_{s,p}\le \tau)\}$ - defines the probability for solver $s$ that the performance ratio $r_{s,p}$ is within a factor $\tau$ of the best possible ratio
+
+\begin{figure}
+	\includegraphics[width=.57\textwidth]{pic/line_search.pdf}
+	\includegraphics[width=.57\textwidth]{pic/trust_region.pdf}
+\end{figure}
+
+
 \Head{Conclusions and Further Work}\\
 
 \medskip
 \hrule\medskip
 \Head{Acknowledgements}\\
-
 \end{textblock}
+
 
 \end{document}
